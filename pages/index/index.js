@@ -4,10 +4,72 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    imgUrls: [
+      '/assets/image/banner1.png',
+      '/assets/image/banner2.jpg',
+      '/assets/image/banner3.jpg'
+    ],
+    indicatorDots: true,
+    autoplay: true,
+    interval: 5000,
+    duration: 1000,
+    list: [{
+        id: 1,
+        name: "hi，那个谁",
+        avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
+        price: "3000",
+        time: "一天前",
+        address: "上海应用技术大学",
+        desc: "临近毕业，二手台式机，打算便宜甩卖，cpu：i5，内存8G，1080P显卡",
+        imgList: [
+          'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
+          'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
+          'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132'
+        ]
+      },
+      {
+        id: 1,
+        name: "hi，那个谁",
+        avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
+        price: "3000",
+        time: "一天前",
+        address: "上海应用技术大学",
+        desc: "临近毕业，二手台式机，打算便宜甩卖，cpu：i5，内存8G，1080P显卡",
+        imgList: []
+      },
+      {
+        id: 1,
+        name: "hi，那个谁",
+        avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
+        price: "3000",
+        time: "一天前",
+        address: "上海应用技术大学",
+        desc: "临近毕业，二手台式机，打算便宜甩卖，cpu：i5，内存8G，1080P显卡",
+        imgList: []
+      },
+      {
+        id: 1,
+        name: "hi，那个谁",
+        avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
+        price: "3000",
+        time: "一天前",
+        address: "上海应用技术大学",
+        desc: "临近毕业，二手台式机，打算便宜甩卖，cpu：i5，内存8G，1080P显卡",
+        imgList: []
+      },
+      {
+        id: 1,
+        name: "hi，那个谁",
+        avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
+        price: "3000",
+        time: "一天前",
+        address: "上海应用技术大学",
+        desc: "临近毕业，二手台式机，打算便宜甩卖，cpu：i5，内存8G，1080P显卡",
+        imgList: []
+      }
+    ]
   },
   //事件处理函数
   bindViewTap: function() {
@@ -15,13 +77,13 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad: function() {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -42,6 +104,9 @@ Page({
         }
       })
     }
+  },
+  onShow: function() {
+    console.log(app.globalData.userInfo)
   },
   getUserInfo: function(e) {
     console.log(e)

@@ -1,0 +1,94 @@
+<!--pages/publish/publish.wxml-->
+<form bindsubmit="formSubmit">
+  <view class='content'>
+    <view class='container'>
+      <textarea name="desc" placeholder="请输入发布详情" />
+      <view class='imgList'>
+        <view class='photo item'>
+          <image src='https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132'></image>
+          <view class='delete'>
+            <image src="/assets/image/delete.png"></image>
+          </view>
+        </view>
+        <view class='photo item'>
+          <image src='https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132'></image>
+          <view class='delete'>
+            <image src="/assets/image/delete.png"></image>
+          </view>
+        </view>
+        <view class='photo item'>
+          <image src='https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132'></image>
+          <view class='delete'>
+            <image src="/assets/image/delete.png"></image>
+          </view>
+        </view>
+        <view class='addPhoto item'>
+          <image src='/assets/image/photo.png'></image>
+          照片
+        </view>
+      </view>
+      <view class="position">
+        <image src='/assets/image/position.png'></image>
+        <text>上海</text>
+        <text>上海应用技术大学</text>
+      </view>
+    </view>
+  </view>
+  <view class='condition'>
+    <view class='container'>
+      <radio-group name="type" bindchange="typeChange">
+        <label class='title'>类型</label>
+        <view class='radioRight'>
+          <label>
+            <radio value="1" checked='true' color="#f8883c" checked/>任务
+          </label>
+          <label>
+            <radio value="2" color="#f8883c" />二手书
+          </label>
+          <label>
+            <radio value="3" color="#f8883c" />失物招领
+          </label>
+        </view>
+      </radio-group>
+      <view class="item" wx:if="{{isScanShow}}">
+        <label>扫码添加</label>
+        <view class="scan">
+          <image src='/assets/image/scan.png'></image>
+        </view>
+      </view>
+      <radio-group name="isFree" bindchange="radioChange">
+        <label class='title'>是否免费</label>
+        <view class='radioRight'>
+          <label>
+            <radio value="0" checked color="#f8883c" />免费
+          </label>
+          <label>
+            <radio value="1" color="#f8883c" bindchange="showPrice" />收费
+          </label>
+        </view>
+      </radio-group>
+      <view class="item" wx:if="{{isShow}}">
+        <label>金额(¥)</label>
+        <input placeholder='请输入价格' type="number" name="price" class='price'></input>
+      </view>
+      <view class="item">
+        <label>邮费(¥)</label>
+        <input placeholder='请输入邮费' type="number" name="postage" class='price'></input>
+      </view>
+      <checkbox-group name="mode">
+        <label class='title'>交易方式</label>
+        <view class='radioRight'>
+          <label>
+            <checkbox value="1" color="#f8883c" checked /> 自提
+          </label>
+          <label>
+            <checkbox value="2" color="#f8883c" checked /> 邮寄
+          </label>
+        </view>
+      </checkbox-group>
+    </view>
+  </view>
+  <view class="btn-area">
+    <button form-type="submit">确认发布</button>
+  </view>
+</form>

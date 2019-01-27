@@ -1,0 +1,11 @@
+<!--pages/contact/contact.wxml-->
+<view class='container'>
+  <view class='item' wx:for="{{list}}" wx:key="id">
+    <image class='avatar' src="{{item.avatar}}"></image>
+    <view class='text'>
+    {{item.name}}
+      <text>{{item.tradingStatus}}</text>
+    </view>
+    <image class='production' src="{{item.proImg}}"></image>
+  </view>
+</view>

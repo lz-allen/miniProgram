@@ -1,13 +1,67 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+<view class='banner'>
+  <swiper class='swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}" wx:key="*this">
+      <swiper-item class='swiper-item '>
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<button class='auth' wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信授权 </button>
+<block wx:else>
+  <view class='tab'>
+    <view class='tab-item'>
+      <image src='/assets/image/help.png'></image>
+      互帮互助
+    </view>
+    <view class='tab-item'>
+      <image src='/assets/image/book.png'></image>
+      二手书
+    </view>
+    <view class='tab-item'>
+      <image src='/assets/image/lost.png'></image>
+      失物招领
+    </view>
+    <view class='tab-item'>
+      <image src='/assets/image/deliver.png'></image>
+      快递
+    </view>
+    <view class='tab-item'>
+      <image src='/assets/image/cet.png'></image>
+      四六级
+    </view>
+    <view class='tab-item'>
+      <image src='/assets/image/job.png'></image>
+      就业
+    </view>
+  </view>
+  <view class='list container'>
+    <view class='title'>
+      最新发布
+      <text>更多</text>
+    </view>
+    <block wx:for="{{list}}" wx:key="id">
+      <view class='item'>
+        <image class='avatar' src="{{item.avatar}}"></image>
+        <view class='info'>
+          <view class='name'>{{item.name}}
+            <text>¥{{item.price}}</text>
+          </view>
+          <view class='subInfo'>
+            <text class='time'>{{item.time}}</text> ——
+            <text class='address'>{{item.address}}</text>
+          </view>
+          <view class="desc">
+            {{item.desc}}
+          </view>
+          <view class='imgList' wx:if="{{item.imgList.length}}">
+            <block wx:for="{{item.imgList}}" wx:key="*this">
+              <image src="{{item}}"></image>
+            </block>
+          </view>
+        </view>
+      </view>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-</view>
+</block>

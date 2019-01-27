@@ -1,0 +1,132 @@
+/* pages/publish/publish.wxss */
+
+form {
+  font-size: 28rpx;
+}
+
+.content {
+  background-color: #fff;
+}
+
+.content textarea {
+  width: 100%;
+  height: 250rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+  border: 1px dashed #eee;
+}
+
+.content .imgList {
+  padding: 30rpx 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.content .imgList .item {
+  width: 150rpx;
+  height: 150rpx;
+  margin-top: 20rpx;
+  margin-right: 20rpx;
+  position: relative;
+}
+
+.content .imgList .photo image {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.content .imgList .photo .delete {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.content .imgList .photo .delete image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.content .imgList .addPhoto {
+  background-color: #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #aaa;
+}
+
+.content .imgList .addPhoto image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.content .position {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  font-size: 24rpx;
+}
+
+.content .position image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.content .position text {
+  margin-left: 10rpx;
+}
+
+.condition {
+  background-color: #fff;
+  margin-top: 20rpx;
+}
+
+.condition .item, .condition radio-group,.condition checkbox-group {
+  margin: 40rpx 0;
+  position: relative;
+}
+.condition .scan{
+  position: absolute;
+  top: 0;
+  left: 210rpx;
+}
+.condition .scan image{
+  width: 50rpx;
+  height: 50rpx;
+}
+.condition .book input{
+  display: inline-block;
+  width: 200rpx;
+}
+.condition .radioRight {
+  position: absolute;
+  left: 200rpx;
+  top: 0;
+}
+
+.condition radio,.condition checkbox {
+  transform: scale(0.7);
+}
+
+.condition .price {
+  position: absolute;
+  left: 210rpx;
+  top: 0;
+}
+
+.btn-area {
+  margin-top: 20rpx;
+}
+
+.btn-area button {
+  font-size: 28rpx;
+  background-color: #f8883c;
+  color: #fff;
+  border-radius: 0;
+}
