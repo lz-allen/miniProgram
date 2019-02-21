@@ -26,10 +26,15 @@ page {
   flex: 1;
   padding-left: 50rpx;
   font-weight: bold;
+  position: relative;
 }
 .item .text text{
+  position: absolute;
+  top: 0;
+  width: 200rpx;
+  right: 0;
   font-weight: normal;
-  margin-left: 20rpx;
+  background-color: #fff;
   color: rgb(255, 94, 0);
 }
 

@@ -131,13 +131,17 @@ Page({
   getUserInfo: function(e) {
     let that = this
     let userInfo = e.detail.userInfo
-    if (e.detail.userInfo) {
+    let openid = wx.getStorageSync('openid')
+    if (!openid) {
+      return
+    }
+    if (userInfo) {
       wx.setStorageSync('userInfo', userInfo)
       request({
         url: '/getToken',
         data: {
-          openid: wx.getStorageSync('openid'),
-          userInfo: wx.getStorageSync('userInfo')
+          openid: openid,
+          userInfo: userInfo
         },
         method: 'post'
       }).then(res => {

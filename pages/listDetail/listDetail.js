@@ -1,4 +1,7 @@
 // pages/listDetail/listDetail.js
+const {
+  request
+} = require('../../utils/request.js')
 Page({
 
   /**
@@ -6,12 +9,41 @@ Page({
    */
   data: {},
   jumpChatDetail: function() {
-    wx.navigateTo({
-      url: '/pages/chatDetail/chatDetail?current=' + JSON.stringify({
-        price: this.data.price,
-        replyId: this.data.openid,
-        img: this.data.imgList[0]
-      }),
+    let token = wx.getStorageSync('token')
+    if (!token) {
+      return
+    }
+    request({
+      url: '/addChatImgList',
+      data: {
+        pImg: this.data.imgList[0],
+        uniqueId: this.data._id,
+        avatarUrl: this.data.avatarUrl,
+        nickName: this.data.nickName,
+        status: '正在交易'
+      },
+      header: {
+        token: token
+      },
+      method: 'post'
+    }).then(res => {
+      if (res.data.code === 0) {
+        console.log(res.data)
+        wx.navigateTo({
+          url: '/pages/chatDetail/chatDetail?current=' + JSON.stringify({
+            price: this.data.price,
+            replyId: this.data.openid,
+            avatarUrl: this.data.avatarUrl,
+            img: this.data.imgList[0]
+          }),
+        })
+      } else {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none',
+          duration: 2000
+        })
+      }
     })
   },
 
@@ -20,6 +52,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData(JSON.parse(options.current))
+    console.log(this.data)
   },
 
   /**

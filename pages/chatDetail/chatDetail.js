@@ -77,7 +77,8 @@ Page({
       data: {
         text: this.data.input,
         openid: this.data.openid,
-        replyId: this.data.replyId
+        replyId: this.data.replyId,
+        avatarUrl: this.data.avatarUrl
       },
       header: {
         token: token
@@ -91,13 +92,42 @@ Page({
       }
     })
   },
+  getMessage() {
+    let token = wx.getStorageSync('token')
+    if (!token) {
+      return
+    }
+    request({
+      url: '/getMessage',
+      data: {
+        openid: this.data.openid,
+        replyId: this.data.replyId,
+      },
+      header: {
+        token: token
+      },
+    }).then(res => {
+      if(res.data.code === 0) {
+        let arr = res.data.data.map(item => {
+          if (item.openid !== this.data.openid){
+            item['left'] = true
+          }
+          return item
+        })
+        this.setData({
+          list: arr
+        })
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options.current)
     this.setData(JSON.parse(options.current))
+    console.log(this.data)
+    this.getMessage()
   },
 
   /**

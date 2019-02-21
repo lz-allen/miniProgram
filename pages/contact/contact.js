@@ -1,74 +1,35 @@
 // pages/contact/contact.js
+const { request } = require('../../utils/request.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [
-      {
-      id: '1',
-      avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-      name: 'hi，那个谁',
-      tradingStatus: "正在交易",
-      proImg: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-    },
-     {
-      id: '1',
-      avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-      name: 'hi，那个谁',
-      tradingStatus: "正在交易",
-      proImg: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-    },
-      {
-        id: '1',
-        avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-        name: 'hi，那个谁',
-        tradingStatus: "正在交易",
-        proImg: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-      },
-      {
-        id: '1',
-        avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-        name: 'hi，那个谁',
-        tradingStatus: "正在交易",
-        proImg: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-      },
-      {
-        id: '1',
-        avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-        name: 'hi，那个谁',
-        tradingStatus: "正在交易",
-        proImg: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-      },
-      {
-        id: '1',
-        avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-        name: 'hi，那个谁',
-        tradingStatus: "正在交易",
-        proImg: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-      },
-      {
-        id: '1',
-        avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-        name: 'hi，那个谁',
-        tradingStatus: "正在交易",
-        proImg: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-      },
-      {
-        id: '1',
-        avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-        name: 'hi，那个谁',
-        tradingStatus: "正在交易",
-        proImg: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132',
-      }]
+    list: []
+  },
+  getListData(){
+    let token = wx.getStorageSync('token')
+    request({
+      url: '/getChatImgList',
+      data: {},
+      header: {
+        token: token
+      }
+    }).then(res => {
+      if(res.data.code === 0) {
+        this.setData({
+          list: res.data.data
+        })
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getListData()
   },
 
   /**

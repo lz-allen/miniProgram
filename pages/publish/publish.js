@@ -79,6 +79,14 @@ Page({
     })
   },
   uploadPhoto(e) {
+    if (this.data.isScanShow) {
+      wx.showToast({
+        title: '请扫码添加',
+        image: '/assets/image/error.png',
+        duration: 1000
+      })
+      return 
+    }
     let that = this
     let imgList = that.data.imgList
     wx.chooseImage({
