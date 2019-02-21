@@ -1,0 +1,4 @@
+<!--pages/help/help.wxml-->
+<view class='help'>
+  <tab-change type="1"></tab-change>
+</view>

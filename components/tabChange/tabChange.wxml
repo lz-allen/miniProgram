@@ -1,0 +1,43 @@
+<!--components/tabChange/tabChange.wxml-->
+<view class='tabChange'>
+  <view class='container'>
+    <view class='tab-h'>
+      <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">最新</view>
+      <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">附近</view>
+      <view class='tab-item search' bindtap='jumpSearch'>
+        <slot></slot>
+      </view>
+    </view>
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
+      <swiper-item wx:for="{{tab}}" wx:key="*this">
+        <scroll-view scroll-y="true" bindscrolltolower="scrollLower" class="scoll-h">
+          <view class='list'>
+            <block wx:for="{{list}}" wx:key="id">
+              <view class='item' bindtap='jumpDetail' data-item='{{item}}'>
+                <image class='avatar' src="{{item.avatarUrl}}"></image>
+                <view class='info'>
+                  <view class='name'>{{item.nickName}}
+                    <text>¥{{item.price}}</text>
+                  </view>
+                  <view class='subInfo'>
+                    <text class='time'>{{item.publishTime}}</text> ——
+                    <text class='address'>{{item.address}}</text>
+                  </view>
+                  <view class="desc">
+                    {{item.desc}}
+                  </view>
+                  <view class='imgList' wx:if="{{item.imgList.length}}">
+                    <block wx:for="{{item.imgList}}" wx:key="*this">
+                      <image src="{{item}}"></image>
+                    </block>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <loading isShow="{{loading}}"></loading>
+</view>

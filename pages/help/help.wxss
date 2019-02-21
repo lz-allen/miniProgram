@@ -1,0 +1,8 @@
+/* pages/help/help.wxss */
+page{
+  background-color: #fff;
+}
+.help{
+  overflow: hidden;
+  height: 100%;
+}

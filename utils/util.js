@@ -1,19 +1,56 @@
-const formatTime = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
+function formatTime(publishTime) {
+  // dateTimeStamp是一个时间毫秒，注意时间戳是秒的形式，在这个毫秒的基础上除以1000，就是十位数的时间戳。13位数的都是时间毫秒。
+  var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
+  var hour = minute * 60;
+  var day = hour * 24;
+  var week = day * 7;
+  var halfamonth = day * 15;
+  var month = day * 30;
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  var now = new Date().getTime(); //获取当前时间毫秒
+  var diffValue = now - new Date(publishTime).getTime(); //时间差
+
+  if (diffValue < 0) {
+    return;
+  }
+
+  var minC = diffValue / minute;
+  var hourC = diffValue / hour;
+  var dayC = diffValue / day;
+  var weekC = diffValue / week;
+  var monthC = diffValue / month;
+  var result = '';
+  if (monthC >= 1) {
+    result = "" + parseInt(monthC) + "月前";
+  } else if (weekC >= 1) {
+    result = "" + parseInt(weekC) + "周前";
+  } else if (dayC >= 1) {
+    result = "" + parseInt(dayC) + "天前";
+  } else if (hourC >= 1) {
+    result = "" + parseInt(hourC) + "小时前";
+  } else if (minC >= 1) {
+    result = "" + parseInt(minC) + "分钟前";
+  } else
+    result = "刚刚";
+  return result;
 }
 
-const formatNumber = n => {
-  n = n.toString()
-  return n[1] ? n : '0' + n
+function formatLocation(longitude, latitude) {
+  if (typeof longitude === 'string' && typeof latitude === 'string') {
+    longitude = parseFloat(longitude)
+    latitude = parseFloat(latitude)
+  }
+
+  longitude = longitude.toFixed(2)
+  latitude = latitude.toFixed(2)
+
+  return {
+    longitude: longitude.toString().split('.'),
+    latitude: latitude.toString().split('.')
+  }
 }
 
 module.exports = {
-  formatTime: formatTime
+  formatTime,
+  formatLocation
 }

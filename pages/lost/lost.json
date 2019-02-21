@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "tab-change": "/components/tabChange/tabChange"
+  },
+  "navigationBarTitleText": "失物招领"
+}

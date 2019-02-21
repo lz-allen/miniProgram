@@ -3,5 +3,6 @@
   "navigationBarBackgroundColor": "#fff",
   "navigationBarTextStyle": "black",
   "navigationBarTitleText": "校园生活",
-  "backgroundTextStyle": "light"
+  "backgroundTextStyle": "#fff",
+  "enablePullDownRefresh": true
 }

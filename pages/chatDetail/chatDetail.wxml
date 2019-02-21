@@ -1,0 +1,27 @@
+<!--pages/chatDetail/chatDetail.wxml-->
+<view class='chatDetail'>
+  <view class='top'>
+    <view class='container content'>
+      <image src="{{img}}"></image>
+      <view class='right'>
+        <view class='price'>¥{{price}}</view>
+        <text>了解情况</text>
+        <button>立即购买</button>
+      </view>
+    </view>
+  </view>
+  <view class='list'>
+    <view class='item' wx:for="{{list}}" wx:key="{{item}}">
+      <view class="{{ item.left ? 'left' : 'right'}}">
+        <image src='/assets/image/banner2.jpeg'></image>
+        <view class='text'>
+          <text>{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='foot'>
+    <input type='text' placeholder='聊天内容' bindinput="getInputVal" value='{{input}}'></input>
+    <button bindtap='sendMessage'>发 送</button>
+  </view>
+</view>

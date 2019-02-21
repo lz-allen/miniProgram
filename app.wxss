@@ -8,3 +8,6 @@ page {
   overflow: hidden;
   font-family: "微软雅黑";
 } 
+.navigator-hover {
+  background-color: transparent;
+}

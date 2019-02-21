@@ -1,69 +1,48 @@
-/**index.wxss**/
+/* components/tabChange/tabChange.wxss */
 
-.banner .swiper {
+.tab-h {
   width: 100%;
-  height: 150px;
-}
-
-.banner .swiper-item image {
-  width: 100%;
-}
-
-.auth {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.tab {
-  display: flex;
-  background-color: #fff;
-  justify-content: space-around;
-  flex-wrap: wrap; 
-  font-size: 28rpx;
-  padding: 20rpx;
-  margin-top: 20rpx;
-}
-
-.tab .tab-item {
-  width: 200rpx;
-  margin: 30rpx 0;
-  text-align: center;
   box-sizing: border-box;
-}
-
-.tab .tab-item image {
-  display: block;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 48rpx;
-  height: 48rpx;
-  margin-bottom: 10rpx;
-}
-
-.list {
+  overflow: hidden;
   background-color: #fff;
-  margin-top: 20rpx;
+  font-size: 30rpx;
+  white-space: nowrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
 }
 
-.list .title {
-  font-size: 26rpx;
+.tab-item {
+  margin: 0 36rpx;
+  display: inline-block;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.tab-item.active {
   color: #f8883c;
-  padding-bottom: 20rpx;
+  position: relative;
 }
 
-.list .title text {
-  float: right;
-  font-size: 24rpx;
-  color: #99a;
+.tab-item.active:after {
+  content: "";
+  display: block;
+  height: 8rpx;
+  width: 52rpx;
+  background: #f8883c;
+  position: absolute;
+  bottom: 0;
+  left: 5rpx;
+  border-radius: 16rpx;
 }
-
+.list{
+  padding: 0 30rpx;
+}
 .list .item {
   position: relative;
-  margin-top: 25rpx;
-  padding-bottom: 25rpx;
+  margin-top: 30rpx;
+  padding-bottom: 30rpx;
   border-bottom: 1px solid #ddd;
 }
 
@@ -120,4 +99,20 @@
   margin-right: 10rpx;
   border-radius: 5rpx;
 }
+.search{
+  position: absolute;
+  right: 0;
+  top: 15rpx;
+}
+.search image{
+  width: 50rpx;
+  height: 50rpx;
+}
 
+.tab-content {
+  margin-top: 80rpx;
+}
+
+.scoll-h {
+  height: 100%;
+}

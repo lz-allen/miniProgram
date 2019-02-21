@@ -4,33 +4,20 @@
     <view class='container'>
       <textarea name="desc" placeholder="请输入发布详情" />
       <view class='imgList'>
-        <view class='photo item'>
-          <image src='https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132'></image>
-          <view class='delete'>
+        <view class='photo item' wx:for="{{imgList}}" wx:for-index="idx" wx:key="*this">
+          <image src="{{item}}" data-src="{{item}}" bindtap='previewImage' mode='aspectFill'></image>
+          <view class='delete' bindtap='deleteImg' data-index="{{idx}}">
             <image src="/assets/image/delete.png"></image>
           </view>
         </view>
-        <view class='photo item'>
-          <image src='https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132'></image>
-          <view class='delete'>
-            <image src="/assets/image/delete.png"></image>
-          </view>
-        </view>
-        <view class='photo item'>
-          <image src='https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQHJCTY7U2iamloKPiaToN9Z9HXNogQtFRxdzQjZF7Z3hXMCtONel5mksJN1KaMRYVcl2Gia5cZQCdw/132'></image>
-          <view class='delete'>
-            <image src="/assets/image/delete.png"></image>
-          </view>
-        </view>
-        <view class='addPhoto item'>
+        <view class='addPhoto item' wx:if="{{addIsShow}}" bindtap='uploadPhoto'>
           <image src='/assets/image/photo.png'></image>
           照片
         </view>
       </view>
       <view class="position">
-        <image src='/assets/image/position.png'></image>
-        <text>上海</text>
-        <text>上海应用技术大学</text>
+        <image src='/assets/image/position.png' bindtap='chooseLocation'></image>
+        <text bindtap='chooseLocation'>{{address}}</text>
       </view>
     </view>
   </view>
@@ -71,18 +58,14 @@
         <label>金额(¥)</label>
         <input placeholder='请输入价格' type="number" name="price" class='price'></input>
       </view>
-      <view class="item">
-        <label>邮费(¥)</label>
-        <input placeholder='请输入邮费' type="number" name="postage" class='price'></input>
-      </view>
       <checkbox-group name="mode">
         <label class='title'>交易方式</label>
         <view class='radioRight'>
           <label>
-            <checkbox value="1" color="#f8883c" checked /> 自提
+            <checkbox value="自提" color="#f8883c" checked /> 自提
           </label>
           <label>
-            <checkbox value="2" color="#f8883c" checked /> 邮寄
+            <checkbox value="邮寄" color="#f8883c" checked /> 邮寄
           </label>
         </view>
       </checkbox-group>

@@ -1,0 +1,4 @@
+/* pages/books/books.wxss */
+page{
+  background-color: #fff;
+}

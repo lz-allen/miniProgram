@@ -1,0 +1,4 @@
+<!--pages/lost/lost.wxml-->
+<view class='lost'>
+  <tab-change type="3"></tab-change>
+</view>

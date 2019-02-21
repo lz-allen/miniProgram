@@ -1,0 +1,7 @@
+<!--components/loading/loading.wxml-->
+<view class='loading' wx:if="{{isShow}}">
+  <view class='img'>
+   <image src='/assets/image/loading.gif'></image>
+   <text>{{text}}</text>
+  </view>
+</view>

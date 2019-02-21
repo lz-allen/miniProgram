@@ -1,0 +1,27 @@
+<!--pages/listDetail/listDetail.wxml-->
+<view class='top'>
+  <image src="{{avatarUrl}}"></image>
+  <view class='info'>
+    <view>{{nickName}}</view>
+    <text>发布于-{{address}}</text>
+  </view>
+</view>
+<view class='middle'>
+  <view class='m-top'>
+    <text class='price'>¥{{price}}</text>
+    <text class='item'>自提</text>
+    <text class='item'>邮寄</text>
+  </view>
+  <view class='desc'>
+    <view class='text'> 
+      {{desc}}
+    </view>
+    <block wx:for="{{imgList}}" wx:key="*this">
+    <image src="{{item}}"></image>
+    </block>
+  </view>
+</view>
+<view class='bottom'>
+  <text class='first' bindtap='jumpChatDetail'>联系</text>
+  <text class='second'>购买</text>
+</view>

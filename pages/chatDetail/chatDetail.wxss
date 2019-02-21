@@ -1,0 +1,115 @@
+.top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+}
+
+.top .content {
+  display: flex;
+  align-items: center;
+}
+
+.top .content image {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 5px;
+}
+
+.top .content .right {
+  font-size: 28rpx;
+  margin-left: 30rpx;
+  flex: 1;
+  position: relative;
+}
+
+.top .content .right button {
+  position: absolute;
+  top: 10rpx;
+  right: 0;
+  color: #fff;
+  background-color: rgb(255, 153, 0);
+  font-size: 30rpx;
+}
+
+.top .content .right .price {
+  line-height: 50rpx;
+  font-size: 36rpx;
+  color: #f90;
+}
+
+.top .content .right text {
+  color: #99a;
+}
+
+.list {
+  padding: 208rpx 20rpx 110rpx 20rpx;
+}
+
+.list .item {
+  margin: 20rpx 0;
+  color: #fff;
+}
+
+.list .item .left {
+  display: flex;
+  align-items: center;
+}
+
+.list .item .left image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+}
+
+.list .item .right {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.list .item .right .text{
+  flex: 1;
+  text-align: right;
+}
+.list .item .right image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-left: 20rpx;
+}
+
+.list .item .text {
+  flex: 1;
+}
+
+.list .item text {
+  display: inline-block;
+  background-color: #f90;
+  border-radius: 5px;
+  padding: 10rpx;
+  font-size: 26rpx;
+}
+
+.foot {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  font-size: 28rpx;
+}
+
+.foot button {
+  font-size: 24rpx;
+  margin-right: 40rpx;
+  color: #fff;
+  background-color: #f90;
+}
+
+.foot input {
+  flex: 1;
+  padding-right: 20rpx;
+}

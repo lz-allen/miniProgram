@@ -1,0 +1,78 @@
+/* pages/listDetail/listDetail.wxss */
+
+.top {
+  background-color: #fff;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #aaa;
+}
+
+.top image {
+  width: 100rpx;
+  height: 100rpx;
+  border: 1px solid #ddd;
+  margin-right: 50rpx;
+}
+
+.middle{
+  background-color: #fff;
+  margin-top: 20rpx;
+  padding: 20rpx;
+  padding-bottom: 100rpx;
+}
+
+.middle .m-top {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.middle .m-top .price {
+  color: #f90;
+  margin-right: 30rpx;
+  font-size: 50rpx;
+}
+
+.middle .m-top .item {
+  background-color:rgba(0, 0, 0, .5);
+  padding: 5rpx 10rpx;
+  border-radius: 2px;
+  font-size: 24rpx; 
+  color: #fff;
+  margin: 0 10rpx;
+}
+.middle .desc .text{
+  display:block;
+  overflow: hidden;
+  font-size: 34rpx;
+  white-space: wrap;
+}
+.middle .desc image{
+  width: 100%;
+  margin-top: 20rpx;
+}
+.bottom{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  background-color: #fff;
+}
+.bottom text{
+  width: 50%;
+  display: block;
+  box-sizing: border-box;
+  color: #fff;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.bottom .first{
+  background-color: rgb(255, 115, 0);
+}
+.bottom .second{
+   background-color: rgb(255, 81, 0);
+}

@@ -1,9 +1,18 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/chatDetail/chatDetail",
+    "pages/listDetail/listDetail",
+    "pages/help/help",
     "pages/mine/mine",
     "pages/contact/contact",
     "pages/publish/publish",
-    "pages/index/index",
+    "pages/books/books",
+    "pages/lost/lost",
+    "pages/express/express",
+    "pages/cet/cet",
+    "pages/job/job",
+    "pages/search/search",
     "pages/logs/logs"
   ],
   "window": {

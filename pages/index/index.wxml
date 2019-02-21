@@ -1,9 +1,9 @@
 <!--index.wxml-->
 <view class='banner'>
   <swiper class='swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-    <block wx:for="{{imgUrls}}" wx:key="*this">
+    <block wx:for="{{imgUrls}}" wx:key="{{item.link}}">
       <swiper-item class='swiper-item '>
-        <image src="{{item}}" class="slide-image" />
+        <image src="{{item.image}}" bindtap='jumpPage' data-link="{{item.link}}" class="slide-image" />
       </swiper-item>
     </block>
   </swiper>
@@ -11,45 +11,57 @@
 <button class='auth' wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信授权 </button>
 <block wx:else>
   <view class='tab'>
-    <view class='tab-item'>
-      <image src='/assets/image/help.png'></image>
-      互帮互助
-    </view>
-    <view class='tab-item'>
-      <image src='/assets/image/book.png'></image>
-      二手书
-    </view>
-    <view class='tab-item'>
-      <image src='/assets/image/lost.png'></image>
-      失物招领
-    </view>
-    <view class='tab-item'>
-      <image src='/assets/image/deliver.png'></image>
-      快递
-    </view>
-    <view class='tab-item'>
-      <image src='/assets/image/cet.png'></image>
-      四六级
-    </view>
-    <view class='tab-item'>
+    <navigator url="/pages/help/help">
+      <view class='tab-item'>
+        <image src='/assets/image/help.png'></image>
+        互帮互助
+      </view>
+    </navigator>
+    <navigator url="/pages/books/books">
+      <view class='tab-item'>
+        <image src='/assets/image/book.png'></image>
+        二手书
+      </view>
+    </navigator>
+    <navigator url='/pages/lost/lost'>
+      <view class='tab-item'>
+        <image src='/assets/image/lost.png'></image>
+        失物招领
+      </view>
+    </navigator>
+    <navigator url='/pages/express/express'>
+      <view class='tab-item'>
+        <image src='/assets/image/deliver.png'></image>
+        快递
+      </view>
+    </navigator>
+    <navigator url='/pages/cet/cet'>
+      <view class='tab-item'>
+        <image src='/assets/image/cet.png'></image>
+        四六级
+      </view>
+    </navigator>
+    <navigator url='/pages/job/job'>
+     <view class='tab-item'>
       <image src='/assets/image/job.png'></image>
       就业
     </view>
+    </navigator>
   </view>
   <view class='list container'>
     <view class='title'>
       最新发布
-      <text>更多</text>
+      <text bindtap='jumpHelp'>更多</text>
     </view>
-    <block wx:for="{{list}}" wx:key="id">
-      <view class='item'>
-        <image class='avatar' src="{{item.avatar}}"></image>
+    <block wx:for="{{list}}" wx:key="{{item.publishTime}}">
+      <view class='item' bindtap='jumpDetail' data-item='{{item}}'>
+        <image class='avatar' src="{{item.avatarUrl}}"></image>
         <view class='info'>
-          <view class='name'>{{item.name}}
+          <view class='name'>{{item.nickName}}
             <text>¥{{item.price}}</text>
           </view>
           <view class='subInfo'>
-            <text class='time'>{{item.time}}</text> ——
+            <text class='time'>{{item.publishTime}}</text> ——
             <text class='address'>{{item.address}}</text>
           </view>
           <view class="desc">
