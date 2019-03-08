@@ -1,6 +1,6 @@
 <!--pages/contact/contact.wxml-->
 <view class='container'>
-  <view class='item' wx:for="{{list}}" wx:key="uniqueId">
+  <view class='item' wx:for="{{list}}" wx:key="uniqueId" bindtap='jumpChatDetail' data-item='{{item}}'>
     <image class='avatar' src="{{item.avatarUrl}}"></image>
     <view class='text'>
     {{item.nickName}}

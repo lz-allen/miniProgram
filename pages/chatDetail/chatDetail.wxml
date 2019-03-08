@@ -2,7 +2,7 @@
 <view class='chatDetail'>
   <view class='top'>
     <view class='container content'>
-      <image src="{{img}}"></image>
+      <image src="{{pImg}}"></image>
       <view class='right'>
         <view class='price'>¥{{price}}</view>
         <text>了解情况</text>
@@ -13,7 +13,7 @@
   <view class='list'>
     <view class='item' wx:for="{{list}}" wx:key="{{item}}">
       <view class="{{ item.left ? 'left' : 'right'}}">
-        <image src='/assets/image/banner2.jpeg'></image>
+        <image src='{{ item.left ?item.avatarUrl : myAvatarUrl}}'></image>
         <view class='text'>
           <text>{{item.text}}</text>
         </view>

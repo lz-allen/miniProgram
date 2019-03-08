@@ -7,7 +7,9 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    myOpenid: wx.getStorageSync('openid')
+  },
   jumpChatDetail: function() {
     let token = wx.getStorageSync('token')
     if (!token) {
@@ -17,9 +19,12 @@ Page({
       url: '/addChatImgList',
       data: {
         pImg: this.data.imgList[0],
+        openid: this.data.myOpenid,
         uniqueId: this.data._id,
+        replyId: this.data.openid,
         avatarUrl: this.data.avatarUrl,
         nickName: this.data.nickName,
+        price: this.data.price,
         status: '正在交易'
       },
       header: {
@@ -28,13 +33,12 @@ Page({
       method: 'post'
     }).then(res => {
       if (res.data.code === 0) {
-        console.log(res.data)
         wx.navigateTo({
           url: '/pages/chatDetail/chatDetail?current=' + JSON.stringify({
             price: this.data.price,
             replyId: this.data.openid,
             avatarUrl: this.data.avatarUrl,
-            img: this.data.imgList[0]
+            pImg: this.data.imgList[0]
           }),
         })
       } else {
@@ -52,6 +56,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData(JSON.parse(options.current))
+    console.log(options.current)
     console.log(this.data)
   },
 

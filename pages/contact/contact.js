@@ -6,18 +6,22 @@ Page({
    * 页面的初始数据
    */
   data: {
+    openid: wx.getStorageSync('openid'),
     list: []
   },
   getListData(){
     let token = wx.getStorageSync('token')
     request({
       url: '/getChatImgList',
-      data: {},
+      data: {
+        openid: this.data.openid
+      },
       header: {
         token: token
       }
     }).then(res => {
       if(res.data.code === 0) {
+        console.log(res.data)
         this.setData({
           list: res.data.data
         })
@@ -28,6 +32,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  jumpChatDetail: (e) => {
+    wx.navigateTo({
+      url: '/pages/chatDetail/chatDetail?current=' + JSON.stringify(e.currentTarget.dataset.item)
+    })
+  },
   onLoad: function(options) {
     this.getListData()
   },

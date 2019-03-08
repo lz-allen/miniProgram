@@ -1,70 +1,19 @@
 // pages/chatDetail/chatDetail.js
-const { request} =require('../../utils/request.js')
+const {
+  request
+} = require('../../utils/request.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [{
-        openid: '',
-        text: '在吗？',
-        left: true
-      },
-      {
-        openid: '',
-        text: '在'
-      },
-      {
-        openid: '',
-        text: '在吗？',
-        left: true
-      },
-      {
-        openid: '',
-        text: '在'
-      },
-      {
-        openid: '',
-        text: '在吗？',
-        left: true
-      },
-      {
-        openid: '',
-        text: '在'
-      },
-      {
-        openid: '',
-        text: '在吗？',
-        left: true
-      },
-      {
-        openid: '',
-        text: '在'
-      },
-      {
-        openid: '',
-        text: '在吗？',
-        left: true
-      },
-      {
-        openid: '',
-        text: '在'
-      },
-      {
-        openid: '',
-        text: '在吗？',
-        left: true
-      },
-      {
-        openid: '',
-        text: '在'
-      },
-    ],
+    list: [],
     input: '',
-    openid: wx.getStorageSync('openid')
+    openid: wx.getStorageSync('openid'),
+    myAvatarUrl: wx.getStorageSync('userInfo').avatarUrl
   },
-  getInputVal(e){
+  getInputVal(e) {
     this.data.input = e.detail.value
   },
   sendMessage() {
@@ -85,7 +34,7 @@ Page({
       },
       method: 'post'
     }).then(res => {
-      if(res.data.code === 0) {
+      if (res.data.code === 0) {
         this.setData({
           input: ''
         })
@@ -107,9 +56,9 @@ Page({
         token: token
       },
     }).then(res => {
-      if(res.data.code === 0) {
+      if (res.data.code === 0) {
         let arr = res.data.data.map(item => {
-          if (item.openid !== this.data.openid){
+          if (item.openid !== this.data.openid) {
             item['left'] = true
           }
           return item
@@ -126,7 +75,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData(JSON.parse(options.current))
-    console.log(this.data)
+    console.log(options.current)
     this.getMessage()
   },
 
