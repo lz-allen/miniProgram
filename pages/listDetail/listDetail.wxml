@@ -9,19 +9,21 @@
 <view class='middle'>
   <view class='m-top'>
     <text class='price'>¥{{price}}</text>
-    <text class='item'>自提</text>
-    <text class='item'>邮寄</text>
+    <block wx:for="{{mode}}" wx:key="*this">
+      <text class='item'>{{item}}</text>
+    </block>
   </view>
   <view class='desc'>
-    <view class='text'> 
+    <view class='text'>
       {{desc}}
     </view>
     <block wx:for="{{imgList}}" wx:key="*this">
-    <image src="{{item}}"></image>
+      <image src="{{item}}"></image>
     </block>
   </view>
 </view>
 <view class='bottom'>
   <text class='first' bindtap='jumpChatDetail'>联系</text>
-  <text class='second'>购买</text>
+  <text class='second' bindtap='buy'>购买</text>
 </view>
+<transaction price="{{price}}" pImg="{{imgList[0]}}" isShow="{{transiactionFlag}}"></transaction>

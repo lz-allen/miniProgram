@@ -8,7 +8,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    myOpenid: wx.getStorageSync('openid')
+    myOpenid: wx.getStorageSync('openid'),
+    transiactionFlag : false
+  },
+  buy: function() {
+    this.setData({
+      transiactionFlag: true
+    })
   },
   jumpChatDetail: function() {
     let token = wx.getStorageSync('token')
@@ -57,7 +63,6 @@ Page({
   onLoad: function(options) {
     this.setData(JSON.parse(options.current))
     console.log(options.current)
-    console.log(this.data)
   },
 
   /**

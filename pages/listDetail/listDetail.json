@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "transaction": "/components/transaction/transaction"
+  },
   "navigationBarTitleText": "任务详情"
 }

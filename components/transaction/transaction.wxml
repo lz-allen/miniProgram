@@ -1,0 +1,15 @@
+<!--components/transaction/transaction.wxml-->
+<view class='transaction' wx:if="{{isShow}}">
+  <view class='content'>
+    <view class='top'>
+      模拟交易
+    </view>
+    <view class='body'>
+       <image src="{{pImg}}"></image>
+      <view class='price'>￥{{price}}</view>
+    </view>
+    <view class='bottom' size="mini">
+      <button type="warn" bindtap='close'>确认</button>
+    </view>
+  </view>
+</view>

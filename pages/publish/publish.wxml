@@ -17,7 +17,7 @@
       </view>
       <view class="position">
         <image src='/assets/image/position.png' bindtap='chooseLocation'></image>
-        <text bindtap='chooseLocation'>{{address}}</text>
+        <text bindtap='chooseLocation'>{{address ? address : '获取定位'}}</text>
       </view>
     </view>
   </view>

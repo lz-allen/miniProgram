@@ -2,8 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/chatDetail/chatDetail",
-    "pages/listDetail/listDetail",
     "pages/help/help",
+    "pages/listDetail/listDetail",
     "pages/mine/mine",
     "pages/contact/contact",
     "pages/publish/publish",
