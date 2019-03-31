@@ -26,4 +26,4 @@
   <text class='first' bindtap='jumpChatDetail'>联系</text>
   <text class='second' bindtap='buy'>购买</text>
 </view>
-<transaction price="{{price}}" pImg="{{imgList[0]}}" isShow="{{transiactionFlag}}"></transaction>
+<transaction price="{{price}}" pImg="{{imgList[0]}}" orderInfo="{{orderInfo}}" isShow="{{transiactionFlag}}"></transaction>

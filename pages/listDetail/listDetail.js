@@ -9,11 +9,19 @@ Page({
    */
   data: {
     myOpenid: wx.getStorageSync('openid'),
-    transiactionFlag : false
+    transiactionFlag : false,
+    orderInfo: {}
   },
   buy: function() {
     this.setData({
-      transiactionFlag: true
+      transiactionFlag: true,
+      orderInfo: {
+        openid: this.data.myOpenid,
+        replyId: this.data.openid,
+        replyName: this.data.nickName,
+        uniqueId: this.data._id,
+        desc: this.data.desc
+      }
     })
   },
   jumpChatDetail: function() {
@@ -29,6 +37,7 @@ Page({
         uniqueId: this.data._id,
         replyId: this.data.openid,
         avatarUrl: this.data.avatarUrl,
+        replyUrl: wx.getStorageSync('userInfo').avatarUrl,
         nickName: this.data.nickName,
         price: this.data.price,
         status: '正在交易'

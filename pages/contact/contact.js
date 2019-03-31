@@ -9,7 +9,28 @@ Page({
     openid: wx.getStorageSync('openid'),
     list: []
   },
-  getListData(){
+  
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  jumpChatDetail: function(e){
+    // 卖家登录情况
+    const newData = Object.assign({}, e.currentTarget.dataset.item)
+    if (this.data.openid === newData.replyId){
+      newData.openid = newData.replyId
+      newData.replyId = this.data.openid
+    }
+    wx.navigateTo({
+      url: '/pages/chatDetail/chatDetail?current=' + JSON.stringify(newData)
+    })
+  },
+  onShow: function () {
+    this.getListData()
+  },
+  onLoad: function(options) {
+    this.getListData()
+  },
+  getListData() {
     let token = wx.getStorageSync('token')
     request({
       url: '/getChatImgList',
@@ -20,8 +41,7 @@ Page({
         token: token
       }
     }).then(res => {
-      if(res.data.code === 0) {
-        console.log(res.data)
+      if (res.data.code === 0) {
         this.setData({
           list: res.data.data
         })
@@ -29,17 +49,7 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  jumpChatDetail: (e) => {
-    wx.navigateTo({
-      url: '/pages/chatDetail/chatDetail?current=' + JSON.stringify(e.currentTarget.dataset.item)
-    })
-  },
-  onLoad: function(options) {
-    this.getListData()
-  },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -51,9 +61,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  // onShow: function() {
 
-  },
+  // },
 
   /**
    * 生命周期函数--监听页面隐藏

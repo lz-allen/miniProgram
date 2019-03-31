@@ -2,14 +2,14 @@
 <view class='transaction' wx:if="{{isShow}}">
   <view class='content'>
     <view class='top'>
-      模拟交易
+      模拟支付
     </view>
     <view class='body'>
        <image src="{{pImg}}"></image>
       <view class='price'>￥{{price}}</view>
     </view>
     <view class='bottom' size="mini">
-      <button type="warn" bindtap='close'>确认</button>
+      <button type="warn" bindtap='close' loading='{{btnLoading}}'>确认</button>
     </view>
   </view>
 </view>

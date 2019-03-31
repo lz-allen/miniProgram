@@ -48,6 +48,9 @@ Page({
       url: '/pages/listDetail/listDetail?current=' + JSON.stringify(e.currentTarget.dataset.item)
     })
   },
+  onShow: function(){
+    this.getListData()
+  },
   onLoad: function() {
     wx.getSetting({
       success: res => {

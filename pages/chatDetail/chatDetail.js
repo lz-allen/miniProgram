@@ -27,6 +27,7 @@ Page({
         text: this.data.input,
         openid: this.data.openid,
         replyId: this.data.replyId,
+        uniqueId: this.data.uniqueId,
         avatarUrl: this.data.avatarUrl
       },
       header: {
@@ -38,6 +39,7 @@ Page({
         this.setData({
           input: ''
         })
+        this.getMessage()
       }
     })
   },
@@ -51,6 +53,7 @@ Page({
       data: {
         openid: this.data.openid,
         replyId: this.data.replyId,
+        uniqueId: this.data.uniqueId
       },
       header: {
         token: token
