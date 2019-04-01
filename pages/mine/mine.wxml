@@ -6,26 +6,34 @@
   </view>
   <view class='info'>
     <view class='container'>
-      <view class='item'>
-        <image src='/assets/image/order.png'></image>
-        <text>订单中心</text>
-        <image src='/assets/image/forward.png'></image>
-      </view>
-      <view class='item'>
-        <image src='/assets/image/publish.png'></image>
-        <text>我发布的</text>
-        <image src='/assets/image/forward.png'></image>
-      </view>
-      <view class='item'>
-        <image src='/assets/image/buy.png'></image>
-        <text>我买到的</text>
-        <image src='/assets/image/forward.png'></image>
-      </view>
-      <view class='item'>
-        <image src='/assets/image/sell.png'></image>
-        <text>我卖出的</text>
-        <image src='/assets/image/forward.png'></image>
-      </view>
+      <navigator url="/">
+        <view class='item'>
+          <image src='/assets/image/order.png'></image>
+          <text>订单中心</text>
+          <image src='/assets/image/forward.png'></image>
+        </view>
+      </navigator>
+      <navigator url="/pages/publishList/publishList">
+        <view class='item'>
+          <image src='/assets/image/publish.png'></image>
+          <text>我发布的</text>
+          <image src='/assets/image/forward.png'></image>
+        </view>
+      </navigator>
+      <navigator url="/pages/buyList/buyList">
+        <view class='item'>
+          <image src='/assets/image/buy.png'></image>
+          <text>我买到的</text>
+          <image src='/assets/image/forward.png'></image>
+        </view>
+      </navigator>
+      <navigator url="/pages/sellList/sellList">
+        <view class='item'>
+          <image src='/assets/image/sell.png'></image>
+          <text>我卖出的</text>
+          <image src='/assets/image/forward.png'></image>
+        </view>
+      </navigator>
       <view class='item'>
         <image src='/assets/image/info.png'></image>
         <text>我的资料</text>

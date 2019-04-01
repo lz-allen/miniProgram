@@ -1,0 +1,4 @@
+<view class='buy'>
+  <order-list listData="{{listData}}"></order-list>
+</view>
+

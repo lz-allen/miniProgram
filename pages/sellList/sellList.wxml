@@ -1,0 +1,2 @@
+<!--pages/sellList/sellList.wxml-->
+ <order-list listData="{{listData}}"></order-list>

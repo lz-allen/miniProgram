@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/publishList/publishList",
     "pages/index/index",
     "pages/chatDetail/chatDetail",
     "pages/help/help",
@@ -11,6 +12,8 @@
     "pages/lost/lost",
     "pages/express/express",
     "pages/cet/cet",
+    "pages/buyList/buyList",
+    "pages/sellList/sellList",
     "pages/job/job",
     "pages/search/search",
     "pages/logs/logs"

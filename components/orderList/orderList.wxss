@@ -1,0 +1,51 @@
+/* components/orderList/orderList.wxss */
+
+.item {
+  background: #fff;
+  color: #000;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  margin: 20rpx 0;
+}
+
+.item .top {
+  display: flex;
+}
+
+.item .top image {
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: 20rpx;
+}
+
+.item .top .info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.item .top .info .desc {
+  width: 100%;
+  font-size: 30rpx;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.item .top .info .price {
+  font-size: 28rpx;
+  color: #f90;
+}
+
+.item .bottom {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.item .bottom button {
+  font-size: 20rpx;
+  padding: 5rpx 20rpx;
+  line-height: 2;
+  margin: 0 5rpx;
+  border-radius: 0;
+}

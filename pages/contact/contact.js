@@ -27,8 +27,7 @@ Page({
   onShow: function () {
     this.getListData()
   },
-  onLoad: function(options) {
-    this.getListData()
+  onLoad: function() {
   },
   getListData() {
     let token = wx.getStorageSync('token')

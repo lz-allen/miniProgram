@@ -1,0 +1,16 @@
+<!--components/orderList/orderList.wxml-->
+<view class='orderList'>
+  <view class='item' wx:for="{{listData}}" wx:key='_id'>
+    <view class='top'>
+      <image src='{{item.imgList[0]}}'></image>
+      <view class='info'>
+        <view class='desc'>{{item.desc}}</view>
+        <text class='price'>￥{{item.price}}</text>
+        <view class='bottom'>
+          <button type='primary' size='mini'>编辑</button>
+          <button type='warn' size='mini'>删除</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
