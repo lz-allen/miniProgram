@@ -6,13 +6,6 @@
   </view>
   <view class='info'>
     <view class='container'>
-      <navigator url="/">
-        <view class='item'>
-          <image src='/assets/image/order.png'></image>
-          <text>订单中心</text>
-          <image src='/assets/image/forward.png'></image>
-        </view>
-      </navigator>
       <navigator url="/pages/publishList/publishList">
         <view class='item'>
           <image src='/assets/image/publish.png'></image>

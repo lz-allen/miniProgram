@@ -5,7 +5,6 @@ const {
 const {
   formatTime
 } = require('../../utils/util.js')
-const app = getApp();
 Component({
   /**
    * 组件的属性列表

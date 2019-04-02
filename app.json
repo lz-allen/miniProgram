@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/publishList/publishList",
     "pages/index/index",
+    "pages/publishList/publishList",
     "pages/chatDetail/chatDetail",
     "pages/help/help",
     "pages/listDetail/listDetail",

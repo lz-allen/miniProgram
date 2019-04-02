@@ -1,6 +1,6 @@
 <!--components/orderList/orderList.wxml-->
 <view class='orderList'>
-  <view class='item' wx:for="{{listData}}" wx:key='_id'>
+  <view class='item' wx:for="{{listData}}" wx:key='{{item._id}}'>
     <view class='top'>
       <image src='{{item.imgList[0]}}'></image>
       <view class='info'>
