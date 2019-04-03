@@ -2,7 +2,7 @@
 <form bindsubmit="formSubmit">
   <view class='content'>
     <view class='container'>
-      <textarea name="desc" placeholder="请输入发布详情" />
+      <textarea name="desc" value='{{textValue}}' placeholder="请输入发布详情" />
       <view class='imgList'>
         <view class='photo item' wx:for="{{imgList}}" wx:for-index="idx" wx:key="*this">
           <image src="{{item}}" data-src="{{item}}" bindtap='previewImage' mode='aspectFill'></image>
@@ -23,7 +23,7 @@
   </view>
   <view class='condition'>
     <view class='container'>
-      <radio-group name="type" bindchange="typeChange">
+      <radio-group name="type" value="{{typeValue}}">
         <label class='title'>类型</label>
         <view class='radioRight'>
           <label>
@@ -37,13 +37,13 @@
           </label>
         </view>
       </radio-group>
-      <view class="item" wx:if="{{isScanShow}}">
+      <!-- <view class="item" wx:if="{{isScanShow}}">
         <label>扫码添加</label>
         <view class="scan">
           <image src='/assets/image/scan.png'></image>
         </view>
-      </view>
-      <radio-group name="isFree" bindchange="radioChange">
+      </view> -->
+      <radio-group name="isFree" bindchange="radioChange" value="{{radioValue}}">
         <label class='title'>是否免费</label>
         <view class='radioRight'>
           <label>
@@ -56,9 +56,9 @@
       </radio-group>
       <view class="item" wx:if="{{isShow}}">
         <label>金额(¥)</label>
-        <input placeholder='请输入价格' type="number" name="price" class='price'></input>
+        <input placeholder='请输入价格' type="number" name="price" value='{{price}}' class='price'></input>
       </view>
-      <checkbox-group name="mode">
+      <checkbox-group name="mode" value="{{checkboxValue}}">
         <label class='title'>交易方式</label>
         <view class='radioRight'>
           <label>

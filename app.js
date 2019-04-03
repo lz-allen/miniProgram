@@ -58,5 +58,7 @@ App({
       }
     })
   },
-  globalData: {}
+  globalData: {
+    editPublishItem: null
+  }
 })

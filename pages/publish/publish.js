@@ -1,4 +1,4 @@
-// pages/publish/publish.js
+const app = getApp()
 const {
   request,
   uploadFile
@@ -14,6 +14,11 @@ Page({
   data: {
     isShow: false,
     addIsShow: true,
+    textValue: '',
+    typeValue: '',
+    radioValue: '',
+    price: '',
+    checkboxValue: [],
     imgList: [],
     location: '',
     address: '获取定位'
@@ -44,7 +49,7 @@ Page({
         },
         method: 'post'
       }).then(res => {
-        if(res.data.code === 0) {
+        if (res.data.code === 0) {
           wx.showToast({
             title: '发布成功',
             mask: true,
@@ -60,17 +65,17 @@ Page({
       })
     }
   },
-  typeChange(e) {
-    if (e.detail.value === '2') {
-      this.setData({
-        isScanShow: true
-      })
-    } else {
-      this.setData({
-        isScanShow: false
-      })
-    }
-  },
+  // typeChange(e) {
+  //   if (e.detail.value === '2') {
+  //     this.setData({
+  //       isScanShow: true
+  //     })
+  //   } else {
+  //     this.setData({
+  //       isScanShow: false
+  //     })
+  //   }
+  // },
   radioChange(e) {
     e.detail.value === '1' ? this.setData({
       isShow: true
@@ -85,7 +90,7 @@ Page({
         image: '/assets/image/error.png',
         duration: 1000
       })
-      return 
+      return
     }
     let that = this
     let imgList = that.data.imgList
@@ -141,7 +146,7 @@ Page({
       },
       method: 'post'
     }).then(res => {
-      if(res.data.code === 0) {
+      if (res.data.code === 0) {
         imgList.splice(index, 1)
         if (imgList.length < 3) {
           this.setData({
@@ -185,7 +190,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function() {
 
   },
 
@@ -200,7 +205,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    const {
+      editPublishItem
+    } = app.globalData
+    if (editPublishItem) {
+      this.setData({
+        imgList: editPublishItem.imgList,
+        textValue: editPublishItem.desc,
+        address: editPublishItem.address,
+        typeValue: editPublishItem.type,
+        radioValue: editPublishItem.isFree,
+        price: editPublishItem.isFree === '1' ? editPublishItem.price : '',
+        checkboxValue: editPublishItem.mode
+      })
+    }
+    app.globalData.editPublishItem = null
   },
 
   /**
