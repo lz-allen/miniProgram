@@ -49,7 +49,13 @@ Page({
       }
     })
   },
+  jumpItem(e){
+    wx.navigateTo({
+      url: '/pages/listDetail/listDetail?current=' + JSON.stringify(e.detail.item)
+    })
+  },
   editItem(e) {
+    console.log(1)
     let token = wx.getStorageSync('token')
     if (!token) {
       return
@@ -109,7 +115,11 @@ Page({
   onShow: function() {
 
   },
-
+  jumpDetail: (e) => {
+    wx.navigateTo({
+      url: '/pages/listDetail/listDetail?current=' + JSON.stringify(e.currentTarget.dataset.item)
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

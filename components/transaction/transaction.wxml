@@ -1,5 +1,5 @@
 <!--components/transaction/transaction.wxml-->
-<view class='transaction' wx:if="{{isShow}}">
+<view class='transaction' wx:if="{{isShow}}" bindtap='hideModal'>
   <view class='content'>
     <view class='top'>
       模拟支付

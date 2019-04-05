@@ -65,7 +65,14 @@ Page({
       }
     })
   },
-
+  previewImage: function (e) {
+    let that = this
+    var current = e.target.dataset.src
+    wx.previewImage({
+      current: current,
+      urls: that.data.imgList
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

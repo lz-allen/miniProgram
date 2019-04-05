@@ -15,10 +15,46 @@ Page({
     isShow: false,
     addIsShow: true,
     textValue: '',
-    typeValue: '',
-    radioValue: '',
+    publishId: '',
+    typeList: [{
+        value: '1',
+        text: '任务',
+        checked: true
+      },
+      {
+        value: '2',
+        text: '二手书',
+        checked: false
+      },
+      {
+        value: '3',
+        text: '失物招领',
+        checked: false
+      }
+    ],
+    isFreeList: [{
+        value: '0',
+        text: '免费',
+        checked: true
+      },
+      {
+        value: '1',
+        text: '收费',
+        checked: false
+      },
+    ],
+    checkboxList: [{
+        value: '自提',
+        text: '自提',
+        checked: true
+      },
+      {
+        value: '邮寄',
+        text: '邮寄',
+        checked: true
+      },
+    ],
     price: '',
-    checkboxValue: [],
     imgList: [],
     location: '',
     address: '获取定位'
@@ -41,6 +77,79 @@ Page({
         mask: true,
         icon: 'loading'
       })
+      if (this.data.publishId) {
+        data['_id'] = this.data.publishId
+        request({
+          url: '/updatePublishItem',
+          data,
+          header: {
+            token: wx.getStorageSync('token')
+          },
+          method: 'post'
+        }).then(res => {
+          if (res.data.code === 0) {
+            this.setData({
+              imgList: [],
+              textValue: '',
+              address: '',
+              typeList: [{
+                  value: '1',
+                  text: '任务',
+                  checked: true
+                },
+                {
+                  value: '2',
+                  text: '二手书',
+                  checked: false
+                },
+                {
+                  value: '3',
+                  text: '失物招领',
+                  checked: false
+                }
+              ],
+              isFreeList: [{
+                  value: '0',
+                  text: '免费',
+                  checked: true
+                },
+                {
+                  value: '1',
+                  text: '收费',
+                  checked: false
+                },
+              ],
+              checkboxList: [{
+                  value: '自提',
+                  text: '自提',
+                  checked: true
+                },
+                {
+                  value: '邮寄',
+                  text: '邮寄',
+                  checked: true
+                },
+              ],
+              isShow: false,
+              publishId: '',
+              price: '',
+              location: '',
+              address: '获取定位'
+            })
+            wx.showToast({
+              title: '修改成功',
+              mask: true,
+              icon: 'success'
+            })
+          } else {
+            wx.showToast({
+              title: '修改失败',
+              mask: true
+            })
+          }
+        })
+        return
+      }
       request({
         url: '/insertList',
         data: data,
@@ -50,6 +159,54 @@ Page({
         method: 'post'
       }).then(res => {
         if (res.data.code === 0) {
+          this.setData({
+            imgList: [],
+            textValue: '',
+            address: '',
+            typeList: [{
+                value: '1',
+                text: '任务',
+                checked: true
+              },
+              {
+                value: '2',
+                text: '二手书',
+                checked: false
+              },
+              {
+                value: '3',
+                text: '失物招领',
+                checked: false
+              }
+            ],
+            isFreeList: [{
+                value: '0',
+                text: '免费',
+                checked: true
+              },
+              {
+                value: '1',
+                text: '收费',
+                checked: false
+              },
+            ],
+            checkboxList: [{
+                value: '自提',
+                text: '自提',
+                checked: true
+              },
+              {
+                value: '邮寄',
+                text: '邮寄',
+                checked: true
+              },
+            ],
+            isShow: false,
+            publishId: '',
+            price: '',
+            location: '',
+            address: '获取定位'
+          })
           wx.showToast({
             title: '发布成功',
             mask: true,
@@ -65,17 +222,6 @@ Page({
       })
     }
   },
-  // typeChange(e) {
-  //   if (e.detail.value === '2') {
-  //     this.setData({
-  //       isScanShow: true
-  //     })
-  //   } else {
-  //     this.setData({
-  //       isScanShow: false
-  //     })
-  //   }
-  // },
   radioChange(e) {
     e.detail.value === '1' ? this.setData({
       isShow: true
@@ -84,14 +230,6 @@ Page({
     })
   },
   uploadPhoto(e) {
-    if (this.data.isScanShow) {
-      wx.showToast({
-        title: '请扫码添加',
-        image: '/assets/image/error.png',
-        duration: 1000
-      })
-      return
-    }
     let that = this
     let imgList = that.data.imgList
     wx.chooseImage({
@@ -175,18 +313,13 @@ Page({
           success: (res) => {
             if (!res.authSetting['scope.userLocation']) {
               //打开提示框，提示前往设置页面
-              that.setData({
-                showCon: true
-              })
             }
           }
         })
       }
     })
   },
-  // upload(p, path){
-  //   console.log(p,path)
-  // }
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -209,16 +342,31 @@ Page({
       editPublishItem
     } = app.globalData
     if (editPublishItem) {
+      const newTypeList = [...this.data.typeList]
+      const newIsFreeList = [...this.data.isFreeList]
+      const newCheckboxList = [...this.data.checkboxList]
+      newTypeList.forEach(item => {
+        item.checked = item.value === editPublishItem.type ? true : false
+      })
+      newIsFreeList.forEach(item => {
+        item.checked = item.value === editPublishItem.isFree ? true : false
+      })
+      newCheckboxList.forEach((item, index) => {
+        item.checked = item.value === editPublishItem.mode[index] ? true : false
+      })
+      let isShow = editPublishItem.isFree === '1' ? true : false
       this.setData({
         imgList: editPublishItem.imgList,
         textValue: editPublishItem.desc,
         address: editPublishItem.address,
-        typeValue: editPublishItem.type,
-        radioValue: editPublishItem.isFree,
+        typeList: newTypeList,
+        isFreeList: newIsFreeList,
+        checkboxList: newCheckboxList,
+        isShow: isShow,
+        publishId: editPublishItem._id,
         price: editPublishItem.isFree === '1' ? editPublishItem.price : '',
-        checkboxValue: editPublishItem.mode
       })
-    }
+    } 
     app.globalData.editPublishItem = null
   },
 

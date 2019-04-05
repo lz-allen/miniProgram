@@ -104,8 +104,7 @@ Page({
       url: '/getList',
       data: {
         pageSize: 6,
-        currentPage: 1,
-        type: 1
+        currentPage: 1
       },
       header: {
         token: token

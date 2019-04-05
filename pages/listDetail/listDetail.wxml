@@ -18,7 +18,7 @@
       {{desc}}
     </view>
     <block wx:for="{{imgList}}" wx:key="*this">
-      <image src="{{item}}"></image>
+      <image src="{{item}}" bindtap='previewImage'></image>
     </block>
   </view>
 </view>

@@ -1,4 +1,6 @@
 <view class='buy'>
-  <order-list listData="{{listData}}"></order-list>
+  <view class='container'>
+    <order-list listData="{{listData}}" type="buy"></order-list>
+  </view>
 </view>
 

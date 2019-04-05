@@ -37,7 +37,6 @@ Component({
    */
   methods: {
     close(){
-      console.log(this.data)
       this.setData({
         btnLoading: true
       })
@@ -54,6 +53,11 @@ Component({
         })
       },1000)
     },
+    hideModal: function () {
+      this.setData({
+        isShow: false
+      })
+    },
     createOrder(){
       let token = wx.getStorageSync('token')
       if (!token) {
@@ -62,12 +66,13 @@ Component({
       request({
         url: '/createOrder',
         data: {
-          pImg: this.data.pImg,
+          imgList: [this.data.pImg],
           price: this.data.price,
           openid: this.data.orderInfo.openid,
           uniqueId: this.data.orderInfo.uniqueId,
           replyId: this.data.orderInfo.replyId,
           desc: this.data.orderInfo.desc,
+          time: new Date(),
           status: '0'
         },
         header: {

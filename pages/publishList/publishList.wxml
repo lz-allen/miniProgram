@@ -1,5 +1,5 @@
 <view class='publishList'>
   <view class='container'>
-    <order-list listData="{{listData}}" bind:editItem="editItem" bind:deleteItem="deleteItem"></order-list>
+    <order-list listData="{{listData}}" isSHowBtn="{{true}}" bind:editItem="editItem" bind:jumpItem="jumpItem" bind:deleteItem="deleteItem"></order-list>
   </view>
 </view>

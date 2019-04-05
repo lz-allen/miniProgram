@@ -7,6 +7,10 @@ Component({
     listData:{
       type: Array,
       value: []
+    },
+    isSHowBtn:{
+      type: Boolean,
+      value: false
     }
   },
 
@@ -27,6 +31,9 @@ Component({
     },
     delete: function (e) {
       this.triggerEvent('deleteItem', { id: e.currentTarget.dataset.id })
+    },
+    jumpDetail(e){
+      this.triggerEvent('jumpItem', { item: e.currentTarget.dataset.item })
     }
   }
 })

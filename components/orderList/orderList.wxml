@@ -1,14 +1,14 @@
 <!--components/orderList/orderList.wxml-->
 <view class='orderList'>
-  <view class='item' wx:for="{{listData}}" wx:key='{{item._id}}'>
+  <view class='item' wx:for="{{listData}}" bindtap='jumpDetail' data-item='{{item}}' wx:key='{{item._id}}'>
     <view class='top'>
       <image src='{{item.imgList[0]}}'></image>
       <view class='info'>
         <view class='desc'>{{item.desc}}</view>
         <text class='price'>￥{{item.price}}</text>
-        <view class='bottom'>
-          <button type='primary' size='mini' bindtap='edit' data-id='{{item._id}}'>编辑</button>
-          <button type='warn' size='mini' bindtap='delete' data-id='{{item._id}}'>删除</button>
+        <view class='bottom' wx:if="{{isSHowBtn}}">
+          <button type='primary' size='mini' catchtap='edit' data-id='{{item._id}}'>编辑</button>
+          <button type='warn' size='mini' catchtap='delete' data-id='{{item._id}}'>删除</button>
         </view>
       </view>
     </view>
