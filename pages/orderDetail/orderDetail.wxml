@@ -1,0 +1,57 @@
+<!-- 
+
+未激活颜色：
+uncolor：'#ccc'
+
+激活
+active：0
+
+数据源
+data：[{},{}]
+
+步骤条类型:type
+basic
+detail
+num
+more
+
+-->
+<view class='orderDetail'>
+  <view class='container'>
+    <steps uncolor="#ccc" type="basic" active="{{orderInfo.status}}" data="{{basicsList}}" />
+    <view class='price'>￥{{orderInfo.price}}</view>
+    <view class='express'>
+      <text>物流详情</text>
+    </view>
+    <view class='orderInfo'>
+      <image src='{{orderInfo.imgList[0]}}'></image>
+      <view class='desc'>{{orderInfo.desc}}</view>
+      <text>联系卖家</text>
+    </view>
+    <view class='orderDesc'>
+      <view>
+        <text class='fl'>订单编号:</text>
+        <text class='fr'>{{orderInfo._id}}</text>
+      </view>
+      <view>
+        <text class='fl'>交易时间:</text>
+        <text class='fr'>{{filter.formatTime(orderInfo.time)}}</text>
+      </view>
+    </view>
+    <button wx:if="{{orderInfo.openid === openid && orderInfo.status === '2'}}" class='send' bindtap='setOrderStatus' data-status='3'>确认收货</button>
+    <button wx:if="{{orderInfo.replyId === openid && orderInfo.status === '0'}}" class='send' bindtap='setOrderStatus' data-status='2'>发货</button>
+  </view>
+</view>
+<wxs module="filter">
+  var formatTime = function(date) {
+    var date = getDate(date); //返回当前时间对象
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+
+    return [year, month, day].join('-')
+  }
+  module.exports = {
+    formatTime: formatTime
+  };
+</wxs>

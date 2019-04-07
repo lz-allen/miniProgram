@@ -10,6 +10,10 @@
           <button type='primary' size='mini' catchtap='edit' data-id='{{item._id}}'>编辑</button>
           <button type='warn' size='mini' catchtap='delete' data-id='{{item._id}}'>删除</button>
         </view>
+        <view class='bottom' wx:if="{{isSHowBuySellBtn.type}}">
+          <button type='primary' size='mini' catchtap='jumpChat' data-item='{{item}}'>{{isSHowBuySellBtn.type=== 'buy'?'联系卖家' : '联系买家'}}</button>
+          <button type='warn' size='mini' catchtap='jumpOrderDetail' data-uniqueId='{{item.uniqueId}}'>详情</button>
+        </view>
       </view>
     </view>
   </view>

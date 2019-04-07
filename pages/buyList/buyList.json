@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "order-list": "/components/orderList/orderList"
-  }
+  },
+  "navigationBarTitleText": "我买到的"
 }

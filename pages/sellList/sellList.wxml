@@ -1,2 +1,6 @@
 <!--pages/sellList/sellList.wxml-->
- <order-list listData="{{listData}}"></order-list>
+<view class='sell'>
+  <view class='container'>
+    <order-list listData="{{listData}}" isSHowBuySellBtn="{{showBuySell}}" bind:jumpChat="jumpChat" bind:jumpOrderDetail="jumpOrderDetail"></order-list>
+  </view>
+</view>

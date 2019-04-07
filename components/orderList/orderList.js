@@ -11,6 +11,10 @@ Component({
     isSHowBtn:{
       type: Boolean,
       value: false
+    },
+    isSHowBuySellBtn: {
+      type: Object,
+      value: {}
     }
   },
 
@@ -31,6 +35,12 @@ Component({
     },
     delete: function (e) {
       this.triggerEvent('deleteItem', { id: e.currentTarget.dataset.id })
+    },
+    jumpChat: function(e){
+      this.triggerEvent('jumpChat', { item: e.currentTarget.dataset.item })
+    },
+    jumpOrderDetail: function(e){
+      this.triggerEvent('jumpOrderDetail', { uniqueid: e.currentTarget.dataset.uniqueid })
     },
     jumpDetail(e){
       this.triggerEvent('jumpItem', { item: e.currentTarget.dataset.item })

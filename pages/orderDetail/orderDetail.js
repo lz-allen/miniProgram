@@ -1,6 +1,6 @@
-const app = getApp();
+// pages/orderDetail/orderDetail.js
 const {
-  request,
+  request
 } = require('../../utils/request.js')
 Page({
 
@@ -8,37 +8,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-    listData: [],
-    showBuySell: {
-      type: 'buy'
-    },
+    basicsList: [{
+      icon: 'select',
+      name: '已付款'
+    }, {
+      icon: 'select',
+      name: '已发货'
+    }, {
+      icon: 'select',
+      name: '待收货'
+    }, {
+      icon: 'select',
+      name: '完成'
+    }, ],
+    orderInfo: {},
+    uniqueId: '',
     openid: wx.getStorageSync('openid')
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    this.fetchData()
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-  fetchData: function() {
+  fetchData() {
     let token = wx.getStorageSync('token')
     if (!token) {
       return
     }
     request({
-      url: '/getBuyList',
+      url: '/getOrderItem',
       data: {
-        pageSize: 6,
-        currentPage: 1,
-        openid: this.data.openid
+        uniqueId: this.data.uniqueId
       },
       header: {
         token: token
@@ -47,52 +46,58 @@ Page({
     }).then(res => {
       if (res.data.code === 0) {
         this.setData({
-          listData: res.data.data.list
+          orderInfo: res.data.data
         })
       }
     })
   },
+  onLoad: function(options) {
+    this.setData({
+      uniqueId: options.uniqueid
+    })
+    this.fetchData()
+  },
+  setOrderStatus: function(e) {
+    let that = this
+    let token = wx.getStorageSync('token')
+    if (!token) {
+      return
+    }
+    request({
+      url: '/updateOrderItem',
+      data: {
+        uniqueId: this.data.orderInfo.uniqueId,
+        status: e.currentTarget.dataset.status
+      },
+      header: {
+        token: token
+      },
+      method: 'post'
+    }).then(res => {
+      if (res.data.code === 0) {
+        that.fetchData()
+      } else {
+        wx.showToast({
+          title: '网络错误',
+          mask: true,
+        })
+      }
+    })
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
 
   },
-  jumpChat: function(e) {
-    console.log(e)
-    let token = wx.getStorageSync('token')
-    if (!token) {
-      return
-    }
-    request({
-      url: '/getChatImgListItem',
-      data: {
-        // pImg: e.detail.item.imgList[0],
-        // openid: e.detail.item.openid,
-        uniqueId: e.detail.item.uniqueId,
-        // replyId: e.detail.item.replyId,
-      },
-      header: {
-        token: token
-      },
-      method: 'get'
-    }).then(res => {
-      if (res.data.code === 0) {
-        wx.navigateTo({
-          url: '/pages/chatDetail/chatDetail?current=' + JSON.stringify(res.data.data)
-        })
-      } else {
-        wx.showToast({
-          title: '请先创建联系人',
-        })
-      }
-    })
-  },
-  jumpOrderDetail: (e) => {
-    wx.navigateTo({
-      url: '/pages/orderDetail/orderDetail?uniqueid=' + e.detail.uniqueid
-    })
-  },
+
   /**
    * 生命周期函数--监听页面隐藏
    */

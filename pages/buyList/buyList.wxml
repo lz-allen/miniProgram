@@ -1,6 +1,6 @@
 <view class='buy'>
   <view class='container'>
-    <order-list listData="{{listData}}" type="buy"></order-list>
+    <order-list listData="{{listData}}" isSHowBuySellBtn="{{showBuySell}}" bind:jumpChat="jumpChat" bind:jumpOrderDetail="jumpOrderDetail"></order-list>
   </view>
 </view>
 
