@@ -23,7 +23,13 @@ Page({
     }, ],
     orderInfo: {},
     uniqueId: '',
+    express: false,
     openid: wx.getStorageSync('openid')
+  },
+  switchChange(e){
+    this.setData({
+      express: e.detail.value
+    })
   },
 
   /**

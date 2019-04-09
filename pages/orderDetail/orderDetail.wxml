@@ -20,7 +20,7 @@ more
   <view class='container'>
     <steps uncolor="#ccc" type="basic" active="{{orderInfo.status}}" data="{{basicsList}}" />
     <view class='price'>￥{{orderInfo.price}}</view>
-    <view class='express'>
+    <view class='express' wx:if="{{orderInfo.status > 0}}">
       <text>物流详情</text>
     </view>
     <view class='orderInfo'>
@@ -37,6 +37,17 @@ more
         <text class='fl'>交易时间:</text>
         <text class='fr'>{{filter.formatTime(orderInfo.time)}}</text>
       </view>
+    </view>
+    <view class='form'>
+      <form bindsubmit="formSubmit">
+        <view class="section__title">是否物流:
+          <switch name="switch" bindchange="switchChange" />
+        </view>
+        <view class="section__title">
+          <span>物流单号：</span>
+          <view><input class='input' name="input" placeholder="请输入物流单号" /></view>
+        </view>
+      </form>
     </view>
     <button wx:if="{{orderInfo.openid === openid && orderInfo.status === '2'}}" class='send' bindtap='setOrderStatus' data-status='3'>确认收货</button>
     <button wx:if="{{orderInfo.replyId === openid && orderInfo.status === '0'}}" class='send' bindtap='setOrderStatus' data-status='2'>发货</button>

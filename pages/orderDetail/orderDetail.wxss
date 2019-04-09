@@ -42,7 +42,7 @@
 }
 
 .orderDetail .orderDesc {
-  padding: 80rpx 0;
+  padding: 80rpx 0 40rpx 0;
 }
 .orderDetail .orderDesc view {
   overflow: hidden;
@@ -54,11 +54,22 @@
 .orderDetail .orderDesc view .fl {
   float: left;
 }
-
+.orderDetail .form .section__title{
+  margin: 20rpx 0;
+  color: rgba(134, 134, 134, 0.863);
+  display: flex；
+}
+.orderDetail .form .section__title switch {
+  margin-left: 20rpx;
+}
+orderDetail .form .section__title .input{
+    width: 500rpx;
+}
 .orderDetail .orderDesc view .fr {
   float: right;
 }
 .send{
+  margin-top: 20rpx;
   background-color: #f8883c;
   color: #fff;
 }
