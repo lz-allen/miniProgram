@@ -12,7 +12,7 @@
         </view>
         <view class='bottom' wx:if="{{isSHowBuySellBtn.type}}">
           <button type='primary' size='mini' catchtap='jumpChat' data-item='{{item}}'>{{isSHowBuySellBtn.type=== 'buy'?'联系卖家' : '联系买家'}}</button>
-          <button type='warn' size='mini' catchtap='jumpOrderDetail' data-uniqueId='{{item.uniqueId}}'>详情</button>
+          <button type='warn' size='mini' catchtap='jumpOrderDetail' data-uniqueId='{{item.uniqueId}}'>{{item.status === '3'? '完成' : '详情'}}</button>
         </view>
       </view>
     </view>

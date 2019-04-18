@@ -73,7 +73,8 @@ Component({
           replyId: this.data.orderInfo.replyId,
           desc: this.data.orderInfo.desc,
           time: new Date(),
-          status: '0'
+          status: '0',
+          expressId: ''
         },
         header: {
           token: token

@@ -26,7 +26,6 @@ more
     <view class='orderInfo'>
       <image src='{{orderInfo.imgList[0]}}'></image>
       <view class='desc'>{{orderInfo.desc}}</view>
-      <text>联系卖家</text>
     </view>
     <view class='orderDesc'>
       <view>
@@ -38,14 +37,14 @@ more
         <text class='fr'>{{filter.formatTime(orderInfo.time)}}</text>
       </view>
     </view>
-    <view class='form'>
+    <view class='form' wx:if="{{orderInfo.replyId === openid && orderInfo.status === '0'}}">
       <form bindsubmit="formSubmit">
         <view class="section__title">是否物流:
           <switch name="switch" bindchange="switchChange" />
         </view>
-        <view class="section__title">
+        <view class="section__title" wx:if="{{express}}">
           <span>物流单号：</span>
-          <view><input class='input' name="input" placeholder="请输入物流单号" /></view>
+          <input class='input' name="input" bindinput="getInputVal" placeholder="请输入物流单号" />
         </view>
       </form>
     </view>

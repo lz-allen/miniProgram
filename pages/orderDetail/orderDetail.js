@@ -24,6 +24,7 @@ Page({
     orderInfo: {},
     uniqueId: '',
     express: false,
+    inputVal: '',
     openid: wx.getStorageSync('openid')
   },
   switchChange(e){
@@ -63,6 +64,11 @@ Page({
     })
     this.fetchData()
   },
+  getInputVal: function(e) {
+    this.setData({
+      inputVal: e.detail.value
+    })
+  },
   setOrderStatus: function(e) {
     let that = this
     let token = wx.getStorageSync('token')
@@ -73,7 +79,8 @@ Page({
       url: '/updateOrderItem',
       data: {
         uniqueId: this.data.orderInfo.uniqueId,
-        status: e.currentTarget.dataset.status
+        status: e.currentTarget.dataset.status,
+        expressId: this.data.inputVal
       },
       header: {
         token: token
