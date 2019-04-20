@@ -1,0 +1,44 @@
+.item {
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+}
+
+.tel {
+  margin-left: 20rpx;
+}
+
+.bottom {
+  margin-top: 10rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.container{
+  position: relative;
+}
+
+.container image {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.default {
+  color: rgb(235, 99, 9);
+}
+
+.address {
+  color: #aaa;
+  margin-left: 20rpx;
+}
+
+.btn {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}

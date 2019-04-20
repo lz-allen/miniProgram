@@ -1,1 +1,64 @@
-/* pages/express/express.wxss */
+.express {
+  font-size: 30rpx;
+}
+
+.container {
+  position: relative;
+}
+
+.search {
+  background-color: #fff;
+  display: flex;
+  padding: 20rpx;
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.search input {
+  flex: 1;
+}
+
+.expressInfo {
+  background-color: #fff;
+  min-height: 400rpx;
+  font-size: 24rpx;
+  padding-top: 122rpx;
+}
+
+.expressInfo .desc {
+  display: flex;
+  justify-content: space-between;
+}
+
+.expressInfo .item {
+  display: flex;
+  align-items: center;
+  padding-bottom: 30rpx;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.expressInfo .item:last-of-type {
+  border: none;
+}
+.expressInfo .item:first-of-type{
+  color: #333;
+}
+
+.expressInfo .item .times {
+  width: 160rpx;
+  padding-top: 30rpx;
+  font-size: 20rpx;
+}
+
+.expressInfo .item .times .time {
+  color: #aaa;
+}
+
+.expressInfo .item .info {
+  flex: 1;
+}

@@ -11,13 +11,17 @@
     "pages/publish/publish",
     "pages/books/books",
     "pages/lost/lost",
-    "pages/express/express",
     "pages/cet/cet",
     "pages/buyList/buyList",
     "pages/sellList/sellList",
     "pages/job/job",
     "pages/search/search",
-    "pages/logs/logs"
+    "pages/aboutUs/aboutUs",
+    "pages/myInfo/myInfo",
+    "pages/addressManage/addressManage",
+    "pages/editAddress/editAddress",
+    "pages/express/express"
+   
   ],
   "window": {
     "backgroundTextStyle": "light",

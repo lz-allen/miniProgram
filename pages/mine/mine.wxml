@@ -27,21 +27,25 @@
           <image src='/assets/image/forward.png'></image>
         </view>
       </navigator>
-      <view class='item'>
-        <image src='/assets/image/info.png'></image>
-        <text>我的资料</text>
-        <image src='/assets/image/forward.png'></image>
-      </view>
-      <view class='item'>
+      <navigator url='/pages/myInfo/myInfo'>
+        <view class='item'>
+          <image src='/assets/image/info.png'></image>
+          <text>我的资料</text>
+          <image src='/assets/image/forward.png'></image>
+        </view>
+      </navigator>
+      <view class='item' bindtap=''>
         <image src='/assets/image/share.png'></image>
-        <text>分享程序</text>
+        <button open-type='share' plain="{{true}}">分享程序</button>
         <image src='/assets/image/forward.png'></image>
       </view>
-      <view class='item'>
-        <image src='/assets/image/about.png'></image>
-        <text>关于程序</text>
-        <image src='/assets/image/forward.png'></image>
-      </view>
+      <navigator url="/pages/aboutUs/aboutUs">
+        <view class='item'>
+          <image src='/assets/image/about.png'></image>
+          <text>关于程序</text>
+          <image src='/assets/image/forward.png'></image>
+        </view>
+      </navigator>
     </view>
   </view>
 </view>

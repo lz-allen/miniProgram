@@ -1,0 +1,28 @@
+.section {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  padding: 20rpx;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+}
+
+.section image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.section text {
+  width: 120rpx;
+  margin-right: 30rpx;
+}
+
+.btn-area {
+  margin-top: 30rpx;
+  padding: 0 20rpx;
+}
+
+.btn-area button {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+}

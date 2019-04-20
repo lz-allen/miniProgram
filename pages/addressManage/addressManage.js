@@ -1,18 +1,18 @@
-const app = getApp()
+// pages/addressManage/addressManage.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo: wx.getStorageSync('userInfo'),
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
@@ -21,7 +21,11 @@ Page({
   onReady: function () {
 
   },
-
+  jumpPage: function (e) {
+    wx.navigateTo({
+      url: '/pages/editAddress/editAddress',
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -60,12 +64,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (res) {
-    return {
-      path: '/pages/index/index',
-      success: res => {
-        console.log(res)
-      }
-    }
+  onShareAppMessage: function () {
+
   }
 })

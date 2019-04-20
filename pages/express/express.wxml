@@ -1,2 +1,23 @@
-<!--pages/express/express.wxml-->
-<text>pages/express/express.wxml</text>
+<view class="express">
+  <view class='search'>
+    <input placeholder="请输入物流单号" auto-focus />
+    <button type='warn' size='mini' bindtap='btnEvent' >查询</button>
+  </view>
+  <view class='expressInfo' wx:if="{{expressInfo.expName}}">
+    <view class='container'>
+      <view class='desc'>
+        <text>快递公司：{{expressInfo.expName}}</text>
+        <text>物流编号：{{expressInfo.number}}</text>
+      </view>
+      <view class='item' wx:for="{{expressInfo.list}}" wx:key="{{item.time}}">
+        <view class='times'>
+          <view class='date'>{{item.d}}</view>
+          <view class='time'>{{item.t}}</view>
+        </view>
+        <text class='info'>
+         {{item.status}}
+         </text>
+      </view>
+    </view>
+  </view>
+</view>

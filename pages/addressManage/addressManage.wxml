@@ -1,0 +1,33 @@
+<view class='addressManage'>
+  <view class='item'>
+    <view class='container'>
+      <view class='top'>
+        <text class='name'>龙兆峰</text>
+        <text class='tel'>13381678729</text>
+      </view>
+      <view class='bottom'>
+        <text class='default'>默认</text>
+        <text class='address'>上海市浦东新区xxx</text>
+      </view>
+      <image src='/assets/image/go.png'></image>
+    </view>
+  </view>
+  <view class='item'>
+    <view class='container'>
+      <view class='top'>
+        <text class='name'>龙兆峰</text>
+        <text class='tel'>13381678729</text>
+      </view>
+      <view class='bottom'>
+        <text class='default'>默认</text>
+        <text class='address'>上海市浦东新区xxx</text>
+      </view>
+      <image src='/assets/image/go.png'></image>
+    </view>
+  </view>
+  <view class='btn container'>
+    <button type="warn" bindtap='jumpPage'>
+      +添加新地址
+    </button>
+  </view>
+</view>

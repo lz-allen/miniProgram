@@ -1,18 +1,18 @@
-const app = getApp()
+// pages/aboutUs/aboutUs.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo: wx.getStorageSync('userInfo'),
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
@@ -60,12 +60,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (res) {
-    return {
-      path: '/pages/index/index',
-      success: res => {
-        console.log(res)
-      }
-    }
+  onShareAppMessage: function () {
+
   }
 })

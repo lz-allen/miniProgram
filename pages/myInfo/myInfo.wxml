@@ -1,0 +1,29 @@
+<view class='fixedInfo'>
+  <view class='container'>
+    <view class='item'>
+      <view class='label'>昵称</view>
+      <view>
+        {{nickName}}
+      </view>
+    </view>
+    <view class='item'>
+      <view class='label'>性别</view>
+      <view>
+        {{gender}}
+      </view>
+    </view>
+  </view>
+</view>
+<view class='address'>
+  <view class='container'>
+    <navigator url='/pages/addressManage/addressManage'>
+      <view class='item'>
+        <view class='label'>地址管理</view>
+        <view>
+          新增/修改
+          <image src='/assets/image/go.png'></image>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>
