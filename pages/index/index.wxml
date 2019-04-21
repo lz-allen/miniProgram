@@ -51,7 +51,6 @@
   <view class='list container'>
     <view class='title'>
       最新发布
-      <text bindtap='jumpHelp'>更多</text>
     </view>
     <block wx:for="{{list}}" wx:key="{{item.publishTime}}">
       <view class='item' bindtap='jumpDetail' data-item='{{item}}'>
