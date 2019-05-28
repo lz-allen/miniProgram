@@ -23,7 +23,12 @@
   </view>
 </view>
 <view class='bottom'>
-  <text class='first' bindtap='jumpChatDetail'>联系</text>
-  <text class='second' bindtap='buy'>购买</text>
+  <view class='item' wx:if="{{myOpenid === openid}}">
+    <text class='third' bindtap='manage'>管理</text>
+  </view>
+  <view class='item' wx:else>
+    <text class='first' bindtap='jumpChatDetail'>联系</text>
+    <text class='second' bindtap='buy'>购买</text>
+  </view>
 </view>
 <transaction price="{{price}}" pImg="{{imgList[0]}}" orderInfo="{{orderInfo}}" isShow="{{transiactionFlag}}"></transaction>

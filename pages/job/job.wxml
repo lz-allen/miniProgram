@@ -1,2 +1,3 @@
-<!--pages/job/job.wxml-->
-<text>pages/job/job.wxml</text>
+<view class='map'>
+  <map id="myMap" style='width: 100%;height: 500rpx' show-location />
+</view>

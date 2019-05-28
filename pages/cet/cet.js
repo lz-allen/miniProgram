@@ -1,49 +1,40 @@
 // pages/cet/cet.js
+const io = require('../../utils/weapp.socket.io.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    openid: wx.getStorageSync('openid'),
+    list: []
   },
-  connectSocket: function() {
-    let token = wx.getStorageSync('token')
-    if (!token) {
-      return
-    }
-    wx.connectSocket({
-      url: 'wss://localhost:3000/test/1',
-      header: {
-        token,
-        'content-type': 'application/json'
-      },
-      method: 'GET',
-      // protocols: [],
-      success: function(res) {
-        wx.onSocketMessage(function (res) {
-          console.log('收到服务器内容：' + res.data)
-        })
-        console.log('wss连接成功')
-      },
-      fail: function(res) {
-        onsole.log('WebSocket连接打开失败，请检查！')
-      },
-      complete: function(res) {},
-    })
-    wx.onSocketError(function (e) {
-      console.log('websocket连接失败！', e);
-    })
-  },
-
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.connectSocket()
+    this.websocket()
   },
-
+  getInputVal(e) {
+    this.data.input = e.detail.value
+  },
+  sendMessage(){
+    console.log(this.data.input)
+  },
+  websocket: function(){
+    var that = this
+    this.socket = io.connect('http://localhost:3000');
+    this.socket.emit('start', { openid: this.data.openid });
+    this.socket.on('system', function (data) {
+      const oldList = that.data.list
+      oldList.push(data)
+      that.setData({
+        list: oldList
+      })
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

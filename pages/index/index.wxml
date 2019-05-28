@@ -37,14 +37,14 @@
     </navigator>
     <navigator url='/pages/cet/cet'>
       <view class='tab-item'>
-        <image src='/assets/image/cet.png'></image>
-        四六级
+        <image src='/assets/image/room.png'></image>
+        聊天室
       </view>
     </navigator>
     <navigator url='/pages/job/job'>
      <view class='tab-item'>
-      <image src='/assets/image/job.png'></image>
-      就业
+      <image src='/assets/image/bus.png'></image>
+      交通信息
     </view>
     </navigator>
   </view>

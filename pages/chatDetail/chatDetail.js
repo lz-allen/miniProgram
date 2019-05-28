@@ -21,6 +21,7 @@ Page({
     if (!token) {
       return
     }
+    if (!this.data.input) return
     request({
       url: '/sendMessage',
       data: {

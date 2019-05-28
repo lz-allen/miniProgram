@@ -24,6 +24,11 @@ Page({
       }
     })
   },
+  manage: function(){
+    wx.navigateTo({
+      url: '/pages/publishList/publishList',
+    })
+  },
   jumpChatDetail: function() {
     let token = wx.getStorageSync('token')
     if (!token) {

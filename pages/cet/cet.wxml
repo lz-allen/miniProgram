@@ -1,2 +1,19 @@
-<!--pages/cet/cet.wxml-->
-<text>pages/cet/cet.wxml</text>
+<view>
+  <view class='list'>
+    <view class='item' wx:for="{{list}}" wx:key="{{item}}">
+      <view class="">
+        <text wx:if="{{item.type === 'start'}}">{{item.msg}}</text>
+        <view wx:else>
+          <image src='{{ item.left ?item.avatarUrl : myAvatarUrl}}'></image>
+          <view class='text'>
+            <text>{{item.text}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='foot'>
+    <input type='text' placeholder='聊天内容' bindinput="getInputVal"></input>
+    <button bindtap='sendMessage'>发 送</button>
+  </view>
+</view>
