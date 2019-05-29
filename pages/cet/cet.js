@@ -8,7 +8,8 @@ Page({
    */
   data: {
     openid: wx.getStorageSync('openid'),
-    list: []
+    list: [],
+    inputTxt: ''
   },
 
   /**
@@ -18,10 +19,17 @@ Page({
     this.websocket()
   },
   getInputVal(e) {
-    this.data.input = e.detail.value
+    this.data.inputTxt = e.detail.value
   },
   sendMessage(){
-    console.log(this.data.input)
+    if (!this.data.inputTxt) return
+    this.socket.emit('clientNews', { msg: this.data.inputTxt},(success) => {
+      if (success){
+        this.setData({
+          inputTxt: ''
+        })
+      }
+    });
   },
   websocket: function(){
     var that = this
@@ -33,6 +41,14 @@ Page({
       that.setData({
         list: oldList
       })
+    });
+    this.socket.on('ServerNews', function (data) {
+      const oldList = that.data.list
+      oldList.push(data)
+      that.setData({
+        list: oldList
+      })
+      console.log(data)
     });
   },
   /**

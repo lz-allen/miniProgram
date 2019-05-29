@@ -1,3 +1,57 @@
+.list {
+  padding: 50rpx 20rpx 60rpx 20rpx;
+}
+
+.list .item {
+  margin: 20rpx 0;
+}
+
+.list .startWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.list .start {
+  font-size: 24rpx;
+  color: rgb(15, 9, 9);
+  padding: 10rpx 20rpx;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.list .message {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.list .message image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.list .message .text {
+  margin-left: 20rpx;
+  background-color: rgb(255, 153, 0);
+  padding: 10rpx;
+  font-size: 28rpx;
+  color: #fff;
+  border-radius: 4px;
+  position: relative;
+}
+
+.list .message .text::before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  border-top: 10rpx solid transparent;
+  border-bottom: 10rpx solid transparent;
+  border-right: 10rpx solid rgb(255, 153, 0);
+  position: absolute;
+  top: 17rpx;
+  left: -8rpx;
+}
+
 .foot {
   position: fixed;
   bottom: 0;
