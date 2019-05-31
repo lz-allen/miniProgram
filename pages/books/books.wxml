@@ -1,6 +1,5 @@
 <!--pages/books/books.wxml-->
 <view class='books'>
   <tab-change type="2">
-    <image class='.image' src='/assets/image/search.png'></image>
   </tab-change>
 </view>

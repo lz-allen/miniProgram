@@ -12,16 +12,15 @@
     "pages/books/books",
     "pages/lost/lost",
     "pages/cet/cet",
+    "pages/job/job",
     "pages/buyList/buyList",
     "pages/sellList/sellList",
-    "pages/job/job",
     "pages/search/search",
     "pages/aboutUs/aboutUs",
     "pages/myInfo/myInfo",
     "pages/addressManage/addressManage",
     "pages/editAddress/editAddress",
     "pages/express/express"
-   
   ],
   "window": {
     "backgroundTextStyle": "light",

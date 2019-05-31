@@ -1,4 +1,4 @@
-const host = 'http://localhost:3000'
+const host = 'http://192.168.1.4:3000'
 module.exports = {
   request(options = {}) {
     const {

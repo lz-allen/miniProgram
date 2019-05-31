@@ -83,7 +83,6 @@ Page({
    */
   onLoad: function(options) {
     this.setData(JSON.parse(options.current))
-    console.log(options.current)
   },
 
   /**

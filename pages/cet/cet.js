@@ -33,7 +33,7 @@ Page({
   },
   websocket: function(){
     var that = this
-    this.socket = io.connect('http://localhost:3000');
+    this.socket = io.connect('http://192.168.1.4:3000');
     this.socket.emit('start', { openid: this.data.openid });
     this.socket.on('system', function (data) {
       const oldList = that.data.list
@@ -48,7 +48,6 @@ Page({
       that.setData({
         list: oldList
       })
-      console.log(data)
     });
   },
   /**
@@ -69,14 +68,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
+    this.socket.emit('leave');
   },
 
   /**

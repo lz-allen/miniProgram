@@ -9,9 +9,13 @@ Page({
    */
   data: {
     expressInfo: {},
+    word: ''
   },
   btnEvent: function() {
     this.fetchData()
+  },
+  getInputVal(e) {
+    this.data.word = e.detail.value
   },
   fetchData: function() {
     let token = wx.getStorageSync('token')
@@ -24,7 +28,7 @@ Page({
     request({
       url: '/getExpressList',
       data: {
-        word: '75132182404811'
+        word: this.data.word
       },
       header: {
         token: token
@@ -50,7 +54,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    if (options.expressId){
+      this.setData({
+        word: options.expressId
+      })
+    }
   },
 
   /**

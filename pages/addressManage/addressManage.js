@@ -1,11 +1,9 @@
-// pages/addressManage/addressManage.js
+const { request } = require('../../utils/request.js')
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    openid: wx.getStorageSync('openid'),
+    listData: []
   },
 
   /**
@@ -30,9 +28,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.fetchData()
   },
-
+  jumpDetail: function(e){
+    wx.navigateTo({
+      url: '/pages/editAddress/editAddress?current=' + JSON.stringify(e.currentTarget.dataset.item)
+    })
+  },
+  fetchData: function(){
+    let token = wx.getStorageSync('token')
+    if (!token) {
+      return
+    }
+    request({
+      url: '/getAddress',
+      data: {
+        openid: this.data.openid
+      },
+      header: {
+        token: token
+      },
+      method: 'get'
+    }).then(res => {
+      if (res.data.code === 0) { 
+        this.setData({
+          listData: res.data.data
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

@@ -1,13 +1,13 @@
 <view class='addressManage'>
-  <view class='item'>
+  <view wx:for='{{listData}}' class='item' data-item='{{item}}' wx:key='{{item._id}}' bindtap='jumpDetail'>
     <view class='container'>
       <view class='top'>
-        <text class='name'>龙兆峰</text>
-        <text class='tel'>13381678729</text>
+        <text class='name'>{{item.name}}</text>
+        <text class='tel'>{{item.tel}}</text>
       </view>
       <view class='bottom'>
-        <text class='default'>默认</text>
-        <text class='address'>上海市浦东新区xxx</text>
+        <text wx:if="{{item.main }}" class='default'>默认</text>
+        <text class='address'>{{item.province + item.detailAddr}}</text>
       </view>
       <image src='/assets/image/go.png'></image>
     </view>

@@ -69,6 +69,37 @@ Page({
       inputVal: e.detail.value
     })
   },
+  jumpExpress: function(e){
+    wx.navigateTo({
+      url: '/pages/express/express?expressId=' + e.currentTarget.dataset.express
+    })
+  },
+  deleteOrder: function(e){
+    let that = this
+    let token = wx.getStorageSync('token')
+    if (!token) {
+      return
+    }
+    request({
+      url: '/deleteOrderItem',
+      data: {
+        uniqueId: this.data.orderInfo.uniqueId,
+      },
+      header: {
+        token: token
+      },
+      method: 'post'
+    }).then(res => {
+      if (res.data.code === 0) {
+        wx.navigateBack();
+      } else {
+        wx.showToast({
+          title: '网络错误',
+          mask: true,
+        })
+      }
+    })
+  },
   setOrderStatus: function(e) {
     let that = this
     let token = wx.getStorageSync('token')

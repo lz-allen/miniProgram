@@ -1,7 +1,7 @@
 <view class="express">
   <view class='search'>
-    <input placeholder="请输入物流单号" auto-focus />
-    <button type='warn' size='mini' bindtap='btnEvent' >查询</button>
+    <input placeholder="请输入物流单号" auto-focus bindinput='getInputVal' value="{{word}}"/>
+    <button type='warn' size='mini' bindtap='btnEvent'>查询</button>
   </view>
   <view class='expressInfo' wx:if="{{expressInfo.expName}}">
     <view class='container'>

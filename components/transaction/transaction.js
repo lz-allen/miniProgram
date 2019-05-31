@@ -68,7 +68,7 @@ Component({
         data: {
           imgList: [this.data.pImg],
           price: this.data.price,
-          openid: this.data.orderInfo.openid,
+          openid: wx.getStorageSync('openid'),
           uniqueId: this.data.orderInfo.uniqueId,
           replyId: this.data.orderInfo.replyId,
           desc: this.data.orderInfo.desc,

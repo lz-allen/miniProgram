@@ -3,7 +3,7 @@
   <view class='container'>
     <view class='tab-h'>
       <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">最新</view>
-      <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">附近</view>
+      <!-- <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">附近</view> -->
       <view class='tab-item search' bindtap='jumpSearch'>
         <slot></slot>
       </view>

@@ -1,29 +1,29 @@
 <form bindsubmit="formSubmit">
   <view class="section">
     <text>收货人</text>
-    <input placeholder="收货人姓名" name="name" auto-focus />
+    <input placeholder="收货人姓名" name="name" auto-focus value='{{name}}'/>
   </view>
   <view class="section">
     <text>手机号码</text>
-    <input placeholder="收货人手机号码" name="tel" />
+    <input placeholder="收货人手机号码" name="tel" value='{{tel}}'/>
   </view>
   <view class="section position">
     <text>地区</text>
     <image src='/assets/image/position.png' bindtap='chooseLocation'></image>
-    <view bindtap='chooseLocation'>{{address ? address : '获取定位'}}</view>
+    <view bindtap='chooseLocation'>{{province ? province : '获取定位'}}</view>
   </view>
   <view class="section">
     <text>详细地址</text>
-    <input placeholder="收货人详细地址" name="addressDesc" />
+    <input placeholder="收货人详细地址" name="detailAddr" value='{{detailAddr}}'/>
   </view>
   <view class="section">
     <text>设为默认</text>
-    <switch name="default"></switch>
+    <switch name="main" value="{{main}}"></switch>
   </view>
   <view class="btn-area">
     <button form-type="submit" type='warn'>
       保存</button>
-    <button>
+    <button bindtap='deleteAddress'>
       删除</button>
   </view>
 </form>

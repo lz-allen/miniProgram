@@ -1,1 +1,21 @@
-/* pages/job/job.wxss */
+.transiform {
+  margin-top: 40rpx;
+}
+
+.transiform .item {
+  background-color: #fff;
+  margin: 20rpx 0;
+  padding: 20rpx;
+}
+
+.transiform .item .title {
+  font-weight: bold;
+  font-size: 30rpx;
+  padding-bottom: 20rpx;
+}
+
+.transiform .item .info {
+  font-size: 28rpx;
+  margin: 10rpx 0;
+}
+
