@@ -30,7 +30,10 @@ Page({
     autoplay: true,
     interval: 5000,
     duration: 1000,
-    list: []
+    list: [],
+    pageSize: 6,
+    currentPage: 1,
+    pullFlag: true
   },
   //事件处理函数
   jumpHelp: () => {
@@ -48,14 +51,22 @@ Page({
       url: '/pages/listDetail/listDetail?current=' + JSON.stringify(e.currentTarget.dataset.item)
     })
   },
-  onShow: function(){
-    this.getListData()
+  onShow: function() {
+    const {
+      pageSize,
+      currentPage
+    } = this.data
+    this.getListData(pageSize, currentPage)
   },
   onLoad: function() {
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
-          this.getListData()
+          const {
+            pageSize,
+            currentPage
+          } = this.data
+          this.getListData(pageSize, currentPage)
         }
       }
     })
@@ -82,11 +93,32 @@ Page({
       })
     }
   },
+  onReachBottom() {
+    if(this.data.pullFlag){
+      wx.showLoading({
+        title: '加载中',
+      })
+      this.data.currentPage++;
+      const {
+        pageSize,
+        currentPage
+      } = this.data
+      this.getListData(pageSize, currentPage, () => {
+        wx.hideLoading()
+      })
+    }else{
+      wx.showToast({
+        title: '到底了!',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
   onPullDownRefresh() {
     // 下拉刷新
     if (!this.data.loading) {
       wx.showNavigationBarLoading()
-      this.getListData()
+      this.getListData(6, 1)
       // 处理完成后，终止下拉刷新
       if (this.data.loading) {
         wx.hideNavigationBarLoading();
@@ -94,7 +126,7 @@ Page({
       }
     }
   },
-  getListData() {
+  getListData(pageSize, currentPage, cb) {
     let token = wx.getStorageSync('token')
     if (!token) {
       return
@@ -103,21 +135,22 @@ Page({
     request({
       url: '/getList',
       data: {
-        pageSize: 6,
-        currentPage: 1
+        pageSize,
+        currentPage
       },
       header: {
         token: token
       }
     }).then(res => {
       if (res.data.code === 0) {
+        if (cb) {
+          cb.call(this)
+        }
         let listArr = res.data.data.list
         if (!listArr.length) {
-          wx.showToast({
-            title: '暂无数据,下拉刷新试试',
-            icon: 'none',
-            duration: 3000
-          })
+          this.data.pullFlag = false
+          this.data.loading = false
+          return
         }
         listArr.map(item => {
           item.publishTime = formatTime(item.publishTime)
@@ -149,7 +182,11 @@ Page({
       }).then(res => {
         if (res.data.code === 0 && res.data.data) {
           wx.setStorageSync('token', res.data.data.token)
-          that.getListData()
+          const {
+            pageSize,
+            currentPage
+          } = this.data
+          this.getListData(pageSize, currentPage)
           this.setData({
             hasUserInfo: true
           })

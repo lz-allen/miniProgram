@@ -12,22 +12,28 @@ Page({
     showBuySell: {
       type: 'sell'
     },
+    pageSize: 6,
+    currentPage: 1,
+    pullFlag: true,
     openid: wx.getStorageSync('openid')
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-  },
+  onLoad: function(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
-  fetchData: function () {
+  fetchData: function() {
+    const {
+      pageSize,
+      currentPage
+    } = this.data
     let token = wx.getStorageSync('token')
     if (!token) {
       return
@@ -45,31 +51,31 @@ Page({
       method: 'get'
     }).then(res => {
       if (res.data.code === 0) {
-        this.setData({
-          listData: res.data.data.list
-        })
+        if (res.data.data.list.length){
+          this.setData({
+            listData: res.data.data.list
+          })
+        }else{
+          this.data.pullFlag = false
+        }
       }
     })
   },
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     this.fetchData()
   },
-  jumpChat: function (e) {
-    console.log(e)
+  jumpChat: function(e) {
     let token = wx.getStorageSync('token')
     if (!token) {
       return
     }
     request({
-      url: '/getChatImgListItem',
+      url: '/getItemById',
       data: {
-        // pImg: e.detail.item.imgList[0],
-        // openid: e.detail.item.openid,
-        uniqueId: e.detail.item.uniqueId,
-        // replyId: e.detail.item.replyId,
+        _id: e.detail.item.uniqueId,
       },
       header: {
         token: token
@@ -78,11 +84,11 @@ Page({
     }).then(res => {
       if (res.data.code === 0) {
         wx.navigateTo({
-          url: '/pages/chatDetail/chatDetail?current=' + JSON.stringify(res.data.data)
+          url: '/pages/listDetail/listDetail?current=' + JSON.stringify(res.data.data)
         })
       } else {
         wx.showToast({
-          title: '请先创建联系人',
+          title: '网络错误',
         })
       }
     })
@@ -95,35 +101,42 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
+  onReachBottom: function() {
+    if (this.data.pullFlag) {
+      this.data.currentPage++;
+      const {
+        pageSize,
+        currentPage
+      } = this.data
+      this.fetchData(pageSize, currentPage)
+    }
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

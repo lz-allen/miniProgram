@@ -55,7 +55,9 @@
 .orderDetail .orderDesc view .fl {
   float: left;
 }
-
+.orderDetail .form {
+  padding-bottom: 20rpx;
+}
 .orderDetail .form .section__title {
   margin: 20rpx 0;
   color: rgba(134, 134, 134, 0.863);
@@ -71,7 +73,9 @@
   flex: 1;
   border: 1px solid #eee;
   padding-left: 20rpx;
-  font-size: 24rpx;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  height: 60rpx;
 }
 
 .orderDetail .orderDesc view .fr {

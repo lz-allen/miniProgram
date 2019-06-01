@@ -12,14 +12,16 @@ Page({
     showBuySell: {
       type: 'buy'
     },
+    pageSize: 6,
+    currentPage: 1,
+    pullFlag: true,
     openid: wx.getStorageSync('openid')
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-  },
+  onLoad: function(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -28,6 +30,7 @@ Page({
 
   },
   fetchData: function() {
+    const {pageSize,currentPage} = this.data
     let token = wx.getStorageSync('token')
     if (!token) {
       return
@@ -35,8 +38,8 @@ Page({
     request({
       url: '/getBuyList',
       data: {
-        pageSize: 6,
-        currentPage: 1,
+        pageSize,
+        currentPage,
         openid: this.data.openid
       },
       header: {
@@ -45,9 +48,13 @@ Page({
       method: 'get'
     }).then(res => {
       if (res.data.code === 0) {
-        this.setData({
-          listData: res.data.data.list
-        })
+        if (res.data.data.list.length){
+          this.setData({
+            listData: res.data.data.list
+          })
+        }else{
+          this.data.pullFlag = false
+        }
       }
     })
   },
@@ -63,12 +70,9 @@ Page({
       return
     }
     request({
-      url: '/getChatImgListItem',
+      url: '/getItemById',
       data: {
-        // pImg: e.detail.item.imgList[0],
-        // openid: e.detail.item.openid,
-        uniqueId: e.detail.item.uniqueId,
-        // replyId: e.detail.item.replyId,
+        _id: e.detail.item.uniqueId,
       },
       header: {
         token: token
@@ -77,11 +81,11 @@ Page({
     }).then(res => {
       if (res.data.code === 0) {
         wx.navigateTo({
-          url: '/pages/chatDetail/chatDetail?current=' + JSON.stringify(res.data.data)
+          url: '/pages/listDetail/listDetail?current=' + JSON.stringify(res.data.data)
         })
       } else {
         wx.showToast({
-          title: '请先创建联系人',
+          title: '网络错误',
         })
       }
     })
@@ -116,7 +120,14 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    if (this.data.pullFlag) {
+      this.data.currentPage++;
+      const {
+        pageSize,
+        currentPage
+      } = this.data
+      this.fetchData(pageSize, currentPage)
+    }
   },
 
   /**

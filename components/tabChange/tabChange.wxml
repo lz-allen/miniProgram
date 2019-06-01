@@ -12,7 +12,7 @@
       <swiper-item wx:for="{{tab}}" wx:key="*this">
         <scroll-view scroll-y="true" bindscrolltolower="scrollLower" class="scoll-h">
           <view class='list'>
-            <block wx:for="{{list}}" wx:key="id">
+            <block wx:for="{{list}}" wx:if="{{item.isVisible}}" wx:key="id">
               <view class='item' bindtap='jumpDetail' data-item='{{item}}'>
                 <image class='avatar' src="{{item.avatarUrl}}"></image>
                 <view class='info'>

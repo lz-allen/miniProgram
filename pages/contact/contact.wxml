@@ -1,10 +1,15 @@
 <!--pages/contact/contact.wxml-->
 <view class='container'>
-  <view class='item' wx:for="{{list}}" wx:key="uniqueId" bindtap='jumpChatDetail' data-item='{{item}}'>
-    <image class='avatar' src="{{item.avatarUrl}}"></image>
-    <view class='text'>
-    {{item.nickName}}
+  <view class='item {{moveFlag ? "active" : ""}}' wx:for="{{list}}" wx:key="uniqueId" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd' bindtap='jumpChatDetail' data-item='{{item}}'>
+    <view class='info'>
+      <image class='avatar' src="{{item.replyUrl}}"></image>
+      <view class='text'>
+        {{item.nickName}}
+      </view>
+      <image class='production' src="{{item.pImg}}"></image>
     </view>
-    <image class='production' src="{{item.pImg}}"></image>
+    <view class='del' catchtap="deleteItem" data-id="{{item.uniqueId}}">
+      删除
+    </view>
   </view>
 </view>

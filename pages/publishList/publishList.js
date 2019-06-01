@@ -9,14 +9,21 @@ Page({
    */
   data: {
     listData: [],
-    openid: wx.getStorageSync('openid')
+    openid: wx.getStorageSync('openid'),
+    pageSize: 6,
+    currentPage: 1,
+    pullFlag: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.fetchData()
+    const {
+      pageSize,
+      currentPage
+    } = this.data
+    this.fetchData(pageSize, currentPage)
   },
 
   /**
@@ -25,7 +32,7 @@ Page({
   onReady: function() {
 
   },
-  fetchData: function() {
+  fetchData: function(pageSize, currentPage) {
     let token = wx.getStorageSync('token')
     if (!token) {
       return
@@ -33,8 +40,8 @@ Page({
     request({
       url: '/getPublishList',
       data: {
-        pageSize: 6,
-        currentPage: 1,
+        pageSize,
+        currentPage,
         openid: this.data.openid
       },
       header: {
@@ -43,19 +50,22 @@ Page({
       method: 'get'
     }).then(res => {
       if (res.data.code === 0) {
-        this.setData({
-          listData: res.data.data.list
-        })
+        if (res.data.data.list.length) {
+          this.setData({
+            listData: res.data.data.list
+          })
+        }else{
+          this.data.pullFlag = false
+        }
       }
     })
   },
-  jumpItem(e){
+  jumpItem(e) {
     wx.navigateTo({
       url: '/pages/listDetail/listDetail?current=' + JSON.stringify(e.detail.item)
     })
   },
   editItem(e) {
-    console.log(1)
     let token = wx.getStorageSync('token')
     if (!token) {
       return
@@ -100,7 +110,7 @@ Page({
       method: 'post'
     }).then(res => {
       if (res.data.code === 0) {
-        this.fetchData()
+        this.fetchData(6, 1)
         wx.showToast({
           title: '删除成功',
           icon: 'success',
@@ -138,14 +148,20 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    if (this.data.pullFlag) {
+      this.data.currentPage++;
+      const {
+        pageSize,
+        currentPage
+      } = this.data
+      this.fetchData(pageSize, currentPage)
+    }
   },
 
   /**

@@ -72,6 +72,10 @@ Component({
           uniqueId: this.data.orderInfo.uniqueId,
           replyId: this.data.orderInfo.replyId,
           desc: this.data.orderInfo.desc,
+          name: this.data.orderInfo.name,
+          province: this.data.orderInfo.province,
+          detailAddr: this.data.orderInfo.detailAddr,
+          tel: this.data.orderInfo.tel,
           time: new Date(),
           status: '0',
           expressId: ''

@@ -257,7 +257,6 @@ Page({
                 addIsShow: false
               })
             }
-            console.log('本地图片的路径:', imgList)
           }
         })
       }
@@ -302,7 +301,6 @@ Page({
     var that = this
     wx.chooseLocation({
       success: function(res) {
-        console.log(res)
         that.setData({
           location: formatLocation(res.longitude, res.latitude),
           address: res.address

@@ -1,5 +1,7 @@
 // pages/contact/contact.js
-const { request } = require('../../utils/request.js')
+const {
+  request
+} = require('../../utils/request.js')
 Page({
 
   /**
@@ -7,16 +9,19 @@ Page({
    */
   data: {
     openid: wx.getStorageSync('openid'),
-    list: []
+    list: [],
+    touchS: [0, 0],
+    touchE: [0, 0],
+    moveFlag: false
   },
-  
+
   /**
    * 生命周期函数--监听页面加载
    */
-  jumpChatDetail: function(e){
+  jumpChatDetail: function(e) {
     // 卖家登录情况
     const newData = Object.assign({}, e.currentTarget.dataset.item)
-    if (this.data.openid === newData.replyId){
+    if (this.data.openid === newData.replyId) {
       newData.openid = newData.replyId
       newData.replyId = this.data.openid
     }
@@ -24,13 +29,60 @@ Page({
       url: '/pages/chatDetail/chatDetail?current=' + JSON.stringify(newData)
     })
   },
-  onShow: function () {
+  deleteItem: function(e){
+    let token = wx.getStorageSync('token')
+    if (!token) {
+      return
+    }
+    request({
+      url: '/deleteChatImgList',
+      data: {
+        uniqueId: e.currentTarget.dataset.id
+      },
+      header: {
+        token: token
+      },
+      method: 'post'
+    }).then(res => {
+      if (res.data.code === 0) {
+        this.getListData()
+      }
+    })
+  },
+  touchStart: function(e) {
+    let sx = e.touches[0].pageX
+    let sy = e.touches[0].pageY
+    this.data.touchS = [sx, sy]
+  },
+  touchMove: function(e) {
+    let sx = e.touches[0].pageX;
+    let sy = e.touches[0].pageY;
+    this.data.touchE = [sx, sy]
+  },
+  touchEnd: function(e) {
+    let start = this.data.touchS
+    let end = this.data.touchE
+    if (start[0] < end[0] - 50) {
+      if(this.data.moveFlag){
+        this.setData({
+          moveFlag: false
+        })
+      }
+    } else if (start[0] > end[0] + 50) {
+      this.setData({
+        moveFlag: true
+      })
+    }
+  },
+  onShow: function() {
     this.getListData()
   },
-  onLoad: function() {
-  },
+  onLoad: function() {},
   getListData() {
     let token = wx.getStorageSync('token')
+    if(!token) {
+      return
+    }
     request({
       url: '/getChatImgList',
       data: {
@@ -48,7 +100,7 @@ Page({
     })
   },
 
-  
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

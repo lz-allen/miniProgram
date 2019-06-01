@@ -11,9 +11,36 @@ page {
   padding-bottom: 25rpx;
   border-bottom: 1px solid #ddd;
   font-size: 28rpx;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+   -webkit-transform: translateX(130rpx);
+  transform: translateX(130rpx);
+  margin-left: -130rpx;
 }
-.item:last-of-type{
+
+.active {
+   -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.item:last-of-type {
   border: none;
+}
+
+.item .info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.item .del {
+  width: 110rpx;
+  height: 130rpx;
+  line-height: 130rpx;
+  text-align: center;
+  background-color: #f00;
+  color: #fff;
+  margin-left: 20rpx;
 }
 
 .item .avatar {
@@ -28,7 +55,8 @@ page {
   font-weight: bold;
   position: relative;
 }
-.item .text text{
+
+.item .text text {
   position: absolute;
   top: 0;
   width: 200rpx;

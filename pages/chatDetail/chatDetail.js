@@ -27,9 +27,10 @@ Page({
       data: {
         text: this.data.input,
         openid: this.data.openid,
+        avatarUrl: wx.getStorageSync('userInfo').avatarUrl,
         replyId: this.data.replyId,
         uniqueId: this.data.uniqueId,
-        avatarUrl: this.data.avatarUrl
+        replyUrl: this.data.replyUrl,
       },
       header: {
         token: token
@@ -79,8 +80,8 @@ Page({
    */
   onLoad: function(options) {
     this.setData(JSON.parse(options.current))
-    console.log(options.current)
     this.getMessage()
+    this.timmer = setInterval(this.getMessage, 2000)
   },
 
   /**
@@ -108,7 +109,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
+    clearInterval(this.timmer)
   },
 
   /**

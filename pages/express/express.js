@@ -12,6 +12,7 @@ Page({
     word: ''
   },
   btnEvent: function() {
+    if (!this.data.word) return
     this.fetchData()
   },
   getInputVal(e) {
@@ -36,13 +37,13 @@ Page({
       method: 'get'
     }).then(res => {
       if (res.data.code === 0) {
-        let list = res.data.data.data.result.list
+        let list = res.data.data.result.list
         list && list.length && list.forEach(item => {
           item.d = item.time.split(' ')[0]
           item.t = time = item.time.split(' ')[1]
         })
         this.setData({
-          expressInfo: res.data.data.data.result,
+          expressInfo: res.data.data.result,
         })
         wx.hideLoading()
       }else{

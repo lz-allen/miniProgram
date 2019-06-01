@@ -12,15 +12,65 @@ Page({
     transiactionFlag : false,
     orderInfo: {}
   },
+  updatePublishItem: function(){
+    let token = wx.getStorageSync('token')
+    if (!token) {
+      return
+    }
+    request({
+      url: '/updatePublishHidden',
+      data: {
+        _id: this.data._id,
+      },
+      header: {
+        token: token
+      },
+      method: 'post'
+    }).then(res => {})
+  },
   buy: function() {
-    this.setData({
-      transiactionFlag: true,
-      orderInfo: {
+    let token = wx.getStorageSync('token')
+    if (!token) {
+      return
+    }
+    request({
+      url: '/getAddress',
+      data: {
         openid: this.data.myOpenid,
-        replyId: this.data.openid,
-        replyName: this.data.nickName,
-        uniqueId: this.data._id,
-        desc: this.data.desc
+      },
+      header: {
+        token: token
+      },
+      method: 'get'
+    }).then(res => {
+      if(res.data.data.length){
+        this.updatePublishItem()
+        const addressInfo = res.data.data.filter(i => i.main === true)[0]
+        this.setData({
+          transiactionFlag: true,
+          orderInfo: {
+            openid: this.data.myOpenid,
+            replyId: this.data.openid,
+            replyName: this.data.nickName,
+            uniqueId: this.data._id,
+            desc: this.data.desc,
+            name: addressInfo.name,
+            province: addressInfo.province,
+            detailAddr: addressInfo.detailAddr,
+            tel: addressInfo.tel
+          }
+        })
+      }else{
+        wx.showToast({
+          title: '未添加收货信息',
+          image: '/assets/image/error.png',
+          duration: 1000
+        })
+        setTimeout(() => {
+          wx.navigateTo({
+            url: '/pages/addressManage/addressManage',
+          })
+        },1000)
       }
     })
   },
@@ -41,8 +91,8 @@ Page({
         openid: this.data.myOpenid,
         uniqueId: this.data._id,
         replyId: this.data.openid,
-        avatarUrl: this.data.avatarUrl,
-        replyUrl: wx.getStorageSync('userInfo').avatarUrl,
+        avatarUrl: wx.getStorageSync('userInfo').avatarUrl,
+        replyUrl: this.data.avatarUrl,
         nickName: this.data.nickName,
         price: this.data.price,
         status: '正在交易'
@@ -57,7 +107,8 @@ Page({
           url: '/pages/chatDetail/chatDetail?current=' + JSON.stringify({
             price: this.data.price,
             replyId: this.data.openid,
-            avatarUrl: this.data.avatarUrl,
+            replyUrl: this.data.avatarUrl,
+            uniqueId: this.data._id,
             pImg: this.data.imgList[0]
           }),
         })

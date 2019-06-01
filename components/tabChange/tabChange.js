@@ -26,6 +26,7 @@ Component({
     loading: false,
     pageSize: 6,
     currentPage: 1,
+    pullFlag: true
   },
   // 组件所在页面的生命周期函数
   attached() {
@@ -60,7 +61,6 @@ Component({
       }
     },
     jumpDetail: (e) => {
-      console.log(e)
       wx.navigateTo({
         url: '/pages/listDetail/listDetail?current=' + JSON.stringify(e.currentTarget.dataset.item)
       })
@@ -85,12 +85,13 @@ Component({
       }).then(res => {
         if (res.data.code === 0) {
           let listArr = res.data.data.list
-          if(!listArr.length) {
-            wx.showToast({
-              title: '暂无数据',
-              icon: 'none',
-              duration: 3000
+          if (!listArr.length) {
+            this.data.pullFlag = false
+            this.data.loading = false
+            this.setData({
+              loading: data.loading
             })
+            return
           }
           let list = listArr.map(item => {
             item.publishTime = formatTime(item.publishTime)
@@ -123,7 +124,19 @@ Component({
       }
     },
     scrollLower(e) {
-      console.log(e)
+      const {
+        pullFlag
+      } = this.data
+      if (pullFlag) {
+        this.data.currentPage++;
+        this.getListData()
+      } else {
+        wx.showToast({
+          title: '到底了！',
+          icon: 'none',
+          duration: 2000
+        })
+      }
     },
     jumpSearch() {
       wx.navigateTo({

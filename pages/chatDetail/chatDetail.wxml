@@ -12,7 +12,8 @@
   <view class='list'>
     <view class='item' wx:for="{{list}}" wx:key="{{item}}">
       <view class="left">
-        <image src='{{myAvatarUrl}}'></image>
+        <image wx:if="{{openid !== replyId}}" src='{{item.openid === openid ? item.avatarUrl : item.replyUrl}}'></image>
+        <image wx:else src='{{item.openid === item.replyId ? item.avatarUrl : avatarUrl}}'></image>
         <view class='text'>
           <text>{{item.text}}</text>
         </view>

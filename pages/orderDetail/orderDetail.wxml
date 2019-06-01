@@ -36,6 +36,18 @@ more
         <text class='fl'>交易时间:</text>
         <text class='fr'>{{filter.formatTime(orderInfo.time)}}</text>
       </view>
+       <view>
+        <text class='fl'>收货人:</text>
+        <text class='fr'>{{orderInfo.name}}</text>
+      </view>
+       <view>
+        <text class='fl'>电话：</text>
+        <text class='fr'>{{orderInfo.tel}}</text>
+      </view>
+       <view>
+        <text class='fl'>地址:</text>
+        <text class='fr'>{{orderInfo.province + orderInfo.detailAddr}}</text>
+      </view>
        <view wx:if="{{orderInfo.expressId}}">
         <text class='fl'>物流单号:</text>
         <text class='fr'>{{orderInfo.expressId}}</text>

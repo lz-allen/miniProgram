@@ -33,7 +33,7 @@ Page({
   },
   websocket: function(){
     var that = this
-    this.socket = io.connect('http://192.168.1.4:3000');
+    this.socket = io.connect('wss://www.lzf-allen.top');
     this.socket.emit('start', { openid: this.data.openid });
     this.socket.on('system', function (data) {
       const oldList = that.data.list

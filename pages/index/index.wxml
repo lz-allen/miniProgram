@@ -52,7 +52,7 @@
     <view class='title'>
       最新发布
     </view>
-    <block wx:for="{{list}}" wx:key="{{item.publishTime}}">
+    <block wx:for="{{list}}" wx:if="{{item.isVisible}}" wx:key="{{item.publishTime}}">
       <view class='item' bindtap='jumpDetail' data-item='{{item}}'>
         <image class='avatar' src="{{item.avatarUrl}}"></image>
         <view class='info'>
